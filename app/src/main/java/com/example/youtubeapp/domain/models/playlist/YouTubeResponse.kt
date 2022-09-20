@@ -1,0 +1,10 @@
+package com.example.splashscreen.domain.models
+
+data class YouTubeResponse(
+    val etag: String,
+    val items: List<Item>,
+    val kind: String,
+    val nextPageToken: String,
+    val pageInfo: PageInfo
+) {
+}
