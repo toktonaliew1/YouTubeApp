@@ -2,13 +2,15 @@ package com.example.youtubeapp.presentation.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
 import com.example.youtubeapp.R
+import com.example.youtubeapp.base.BaseActivity
 import com.example.youtubeapp.extensions.getConnectivityManager
 import com.example.youtubeapp.extensions.isInternetConnected
 import com.example.youtubeapp.presentation.ui.adapters.PlaylistAdapter
 
-class MainActivity : AppCompatActivity() {
+class MainActivity :  BaseActivity(R.layout.activity_main) {
 
     lateinit var adapter : PlaylistAdapter
 

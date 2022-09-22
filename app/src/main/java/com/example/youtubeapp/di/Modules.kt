@@ -18,7 +18,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-const val BASE_URL = "https://www.googleapis.com/"
+
 
 val vmModule = module {
     viewModel { PlaylistViewModel(get()) }
@@ -48,7 +48,7 @@ val localModule = module {
 fun provideRetrofit(client: OkHttpClient): Retrofit {
     return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(BASE_URL)
+            .baseUrl("https://www.googleapis.com/youtube/v3/")
             .client(client)
             .build()
 }

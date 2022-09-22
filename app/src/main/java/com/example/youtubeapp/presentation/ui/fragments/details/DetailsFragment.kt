@@ -14,7 +14,6 @@ import com.example.youtubeapp.domain.models.PlaylistItem
 import com.example.youtubeapp.data.remote.network.Resource
 import com.example.youtubeapp.data.remote.network.Status
 import com.example.youtubeapp.extensions.*
-import com.tilek.youtubeparser.extensions.*
 import com.example.youtubeapp.presentation.ui.adapters.DetailAdapter
 import com.example.youtubeapp.presentation.ui.fragments.playlists.PlaylistFragment
 import com.example.youtubeapp.presentation.playlistClick.OnPlaylistClickListener

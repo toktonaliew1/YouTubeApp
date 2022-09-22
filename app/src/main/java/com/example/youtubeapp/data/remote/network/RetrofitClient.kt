@@ -1,7 +1,6 @@
 package com.example.youtubeapp.data.remote.network
 
 import com.example.youtubeapp.data.remote.network.apiservisec.YouTubeApi
-import com.example.youtubeapp.di.BASE_URL
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -11,7 +10,7 @@ class RetrofitClient {
 
     companion object {
         private val okHttpClient: OkHttpClient =
-            OkHttpClient().newBuilder() //для ограничения времени
+            OkHttpClient().newBuilder()
                 .connectTimeout(60, TimeUnit.SECONDS)
                 .readTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
@@ -19,7 +18,7 @@ class RetrofitClient {
 
         private val retrofit: Retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(BASE_URL)
+            .baseUrl("https://www.googleapis.com/youtube/v3/")
             .client(okHttpClient)
             .build()
 

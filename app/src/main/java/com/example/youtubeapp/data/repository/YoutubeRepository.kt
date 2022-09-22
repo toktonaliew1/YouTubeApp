@@ -11,10 +11,10 @@ import kotlinx.coroutines.Dispatchers
 class YoutubeRepository(private var api: YouTubeApi, private var database: YoutubeDataBase) {
 
     companion object {
-        const val YOUTUBE_API_KEY = "AIzaSyDr7WJvkOUCrqvY6dsVmV9hjCpxG-EYbiI"
+        const val YOUTUBE_API_KEY = "AIzaSyAcCV7Vqi1KRKr6ZKwms-Hd8Omi6aWCHps"
     }
 
-    val channelId = "UC8M5YVWQan_3Elm-URehz9w"
+    val channelId = "UCKsqMPIIhev3qbMxCL8Emvw"
     val part = "snippet,contentDetails"
     val maxResults = 8
 
