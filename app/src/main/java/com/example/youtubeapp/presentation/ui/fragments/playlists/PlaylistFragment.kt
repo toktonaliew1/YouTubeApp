@@ -11,6 +11,7 @@ import com.example.youtubeapp.domain.models.PlaylistInfo
 import com.example.youtubeapp.domain.models.PlaylistItem
 import com.example.youtubeapp.data.remote.network.Resource
 import com.example.youtubeapp.data.remote.network.Status
+import com.example.youtubeapp.domain.models.Playlist
 import com.example.youtubeapp.extensions.*
 import com.example.youtubeapp.presentation.ui.fragments.noInternet.NoInternetFragment
 import com.example.youtubeapp.presentation.playlistClick.OnPlaylistClickListener
@@ -74,15 +75,15 @@ class PlaylistFragment : BaseFragment<PlaylistViewModel>(R.layout.playlist_fragm
     }
 
     private fun fetchNextData(nextPageToken: String) {
-        mViewModule!!.getNextPlaylist(nextPageToken).observe(viewLifecycleOwner, {
+        mViewModule!!.getNextPlaylist(nextPageToken).observe(viewLifecycleOwner) {
             if (it?.data?.nextPageToken == null) {
                 this.nextPageToken = null
             }
             statusCheck(it)
-        })
+        }
     }
 
-    private fun statusCheck(resource: Resource<PlaylistInfo>) {
+    private fun statusCheck(resource: Resource<Playlist>) {
         when (resource.status) {
             Status.SUCCESS -> setData(resource)
             Status.LOADING -> playlist_progress.visible()
@@ -91,12 +92,12 @@ class PlaylistFragment : BaseFragment<PlaylistViewModel>(R.layout.playlist_fragm
     }
 
     private fun fetchData() {
-        mViewModule!!.getPlaylists().observe(viewLifecycleOwner, {
+        mViewModule!!.getPlaylists().observe(viewLifecycleOwner) {
             statusCheck(it)
-        })
+        }
     }
 
-    private fun setData(resource: Resource<PlaylistInfo>) {
+    private fun setData(resource: Resource<Playlist>) {
         resource.data?.items?.let { it1 ->
             adapter.add(it1)
             mViewModule!!.addPlaylistsToLD(it1)

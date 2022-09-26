@@ -54,6 +54,9 @@ dependencies {
     // Dependencies for working with Architecture components
     // You'll probably have to update the version numbers in build.gradle (Project)
 
+    //view model
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+
     // Room components
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -82,11 +85,12 @@ dependencies {
     })
     androidTestImplementation "androidx.test.ext:junit:$rootProject.androidxJunitVersion"
 
-    //coin
-    def koin_version = '2.2.1'
+    //koin
+    def koin_version = '2.0.1'
+    implementation "org.koin:koin-android:$koin_version"
     implementation "org.koin:koin-androidx-scope:$koin_version"
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
-    implementation "org.koin:koin-androidx-fragment:$koin_version"
+
 
     //navigation
     def nav_version = "2.3.2"
@@ -109,8 +113,6 @@ dependencies {
     //Paging 3
     def pagingVersion = "3.0.1"
     implementation("androidx.paging:paging-runtime-ktx:$pagingVersion")
-
-
 
 
 

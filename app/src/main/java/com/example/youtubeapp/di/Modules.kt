@@ -38,7 +38,7 @@ val networkModule = module {
 }
 
 val repositoryModule = module {
-    factory { YoutubeRepository(get(), get()) }
+    factory { YoutubeRepository(get(), get(), get()) }
 }
 
 val localModule = module {

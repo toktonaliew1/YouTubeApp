@@ -13,6 +13,7 @@ import com.example.youtubeapp.domain.models.PlaylistInfo
 import com.example.youtubeapp.domain.models.PlaylistItem
 import com.example.youtubeapp.data.remote.network.Resource
 import com.example.youtubeapp.data.remote.network.Status
+import com.example.youtubeapp.domain.models.Playlist
 import com.example.youtubeapp.extensions.*
 import com.example.youtubeapp.presentation.ui.adapters.DetailAdapter
 import com.example.youtubeapp.presentation.ui.fragments.playlists.PlaylistFragment
@@ -82,13 +83,13 @@ class DetailsFragment : BaseFragment<DetailsViewModel>(R.layout.details_fragment
         })
     }
 
-    private fun setData(resource : Resource<PlaylistInfo>){
+    private fun setData(resource : Resource<Playlist>){
         resource.data?.items?.let { it1 -> adapter.add(it1) }
         nextPageToken = resource.data?.nextPageToken
         progress_bar.gone()
     }
 
-    private fun statusCheck(resource : Resource<PlaylistInfo>){
+    private fun statusCheck(resource : Resource<Playlist>){
         when (resource.status) {
             Status.SUCCESS -> setData(resource)
             Status.LOADING -> progress_bar.visible()

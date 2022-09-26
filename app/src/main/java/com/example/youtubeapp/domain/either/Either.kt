@@ -1,4 +1,4 @@
-package com.example.cleanarchicture.domain.either
+package com.example.youtubeapp.domain.either
 
 sealed class Either<out A, out B>{
     class Left<out A>(val value: A) : Either<A, Nothing>()
