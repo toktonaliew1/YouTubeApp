@@ -4,10 +4,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import com.example.youtubeapp.R
+import com.example.youtubeapp.base.BaseActivity
+import com.example.youtubeapp.base.BaseActivityMain
 import com.example.youtubeapp.extensions.getConnectivityManager
 import com.example.youtubeapp.extensions.isInternetConnected
 
-class MainActivity :AppCompatActivity() {
+class MainActivity : BaseActivityMain(R.layout.activity_main){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -30,10 +30,6 @@ data class Playlist(
 ): Serializable
 
 
-data class ResourceId(
-        var videoId: String? = null
-) : Serializable
-
 @Entity
 data class PlaylistItem(
         @PrimaryKey
@@ -46,10 +42,7 @@ data class PlaylistItem(
         var startTime: Float = 0f
 ) : Serializable
 
-data class DetailVideo(
-        var id: String? = null,
-        var snippet: Snippet? = null
-) : Serializable
+
 
 data class PlaylistItems(
         @SerializedName("id")
@@ -57,10 +50,12 @@ data class PlaylistItems(
         var kind: String? = null,
         var etag: String? = null,
         var snippet: Snippet? = null,
-        var items: MutableList<PlaylistItems>? = null,
         var contentDetails: ContentDetails? = null,
+        var items: MutableList<PlaylistItems>? = null,
         var nextPageToken: String? = null
 ):Serializable
+
+
 
 data class ContentDetails(
         var videoId: String? = null,
@@ -85,13 +80,3 @@ data class Medium(
         var url: String? = null
 ): Serializable
 
-@Entity(tableName = "detailPlaylist")
-data class DetailPlayList(
-        @PrimaryKey(autoGenerate = true)
-        @NonNull
-        var id: Long? = null,
-
-        var nextPageToken: String? = null,
-
-        var items: MutableList<DetailVideo>? = null
-):Serializable

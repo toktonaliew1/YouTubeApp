@@ -10,6 +10,7 @@ import com.example.youtubeapp.presentation.ui.activity.MainViewModel
 
 import com.example.youtubeapp.presentation.ui.fragments.noInternet.NoInternetViewModel
 import com.example.youtubeapp.presentation.ui.fragments.playlists.PlaylistViewModel
+import com.example.youtubeapp.presentation.ui.fragments.video.VideoDetailViewModel
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -25,6 +26,8 @@ val vmModule = module {
     viewModel { MainViewModel() }
     viewModel { DetailsViewModel(get()) }
     viewModel { NoInternetViewModel() }
+    viewModel { VideoDetailViewModel(get()) }
+
 }
 
 val appModule = module {

@@ -5,18 +5,25 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.youtubeapp.converter.ContentDetailsConverter
-import com.example.youtubeapp.converter.ImageInfoConverter
-import com.example.youtubeapp.converter.MediumConverter
-import com.example.youtubeapp.converter.SnippetConverter
+import com.example.youtubeapp.converter.*
+import com.example.youtubeapp.domain.models.DetailPlayList
+import com.example.youtubeapp.domain.models.Playlist
+import com.example.youtubeapp.domain.models.PlaylistInfo
 import com.example.youtubeapp.domain.models.PlaylistItem
 
-@Database(entities = [PlaylistItem::class], version = 1, exportSchema = false)
+@Database(
+    entities = [PlaylistInfo::class, DetailPlayList::class,PlaylistItem::class],
+    version = 3,
+    exportSchema = false
+)
+
 @TypeConverters(
     ContentDetailsConverter::class,
     ImageInfoConverter::class,
     MediumConverter::class,
-    SnippetConverter::class
+    SnippetConverter::class,
+    ClassTypeConverter ::class,
+    TypeConverterVideo::class
 )
 abstract class YoutubeDataBase : RoomDatabase() {
 

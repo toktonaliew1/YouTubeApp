@@ -12,7 +12,7 @@ import com.google.android.youtube.player.YouTubePlayer
 abstract class BaseFragment<V : ViewModel>(private val layoutId: Int) :
         Fragment() {
 
-    var mViewModule: V? = null
+    var     mViewModule: V? = null
 
     private var hasInitializedRootView = false
     var rootView: View? = null

@@ -16,8 +16,10 @@ class App : Application() {
 
             androidContext(this@App)
 
-            modules(vmModule, appModule, networkModule, repositoryModule, localModule)
+            modules(listOf(vmModule, appModule, networkModule, repositoryModule, localModule))
         }
     }
+
+
 
 }

@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/videoDetailFragment"
-        android:name="com.example.youtubeapp.presentation.ui.fragments.video.VideoDetailFragment"
+        android:name="com.example.youtubeapp.presentation.ui.fragments.video.VideoActivity"
         android:label="video_detail_fragment"
-        tools:layout="@layout/video_detail_fragment" />
+        tools:layout="@layout/activity_video" />
 </navigation>

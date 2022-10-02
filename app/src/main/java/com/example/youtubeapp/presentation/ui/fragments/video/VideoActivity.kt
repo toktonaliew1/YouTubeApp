@@ -1,72 +1,83 @@
 package com.example.youtubeapp.presentation.ui.fragments.video
 
+import android.app.Activity
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
+import android.view.ViewGroup
+import android.view.WindowManager
+import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import com.example.youtubeapp.R
+import com.example.youtubeapp.base.BaseActivity
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import com.google.android.youtube.player.YouTubePlayerView
 import com.example.youtubeapp.domain.models.PlaylistItem
 import com.example.youtubeapp.data.repository.YoutubeRepository
-import com.example.youtubeapp.extensions.showToast
+import com.example.youtubeapp.domain.models.DetailVideo
+import com.example.youtubeapp.extensions.layoutParams
+
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import kotlinx.android.synthetic.main.activity_video.*
 
-class VideoActivity :  AppCompatActivity() {
+class VideoActivity :  BaseActivity<VideoDetailViewModel>(R.layout.activity_video,VideoDetailViewModel::class) {
 
-    companion object {
-        const val VIDEO_ITEM = "video_item"
-        const val RECOVERY_REQUEST = 1
+
+    override fun setupLiveData() {
     }
 
-//    private lateinit var youTubeView: YouTubePlayerView
-//
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        if (requestCode == RECOVERY_REQUEST) {
-//            getYouTubePlayerProvider().initialize(YoutubeRepository.YOUTUBE_API_KEY, this)
-//        }
-//    }
-//
-//    fun getYouTubePlayerProvider(): YouTubePlayerView {
-//        return youTubeView
-//    }
-//
-//    private lateinit var video: PlaylistItem
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_video)
-//        intent?.let {
-//            video = it.getSerializableExtra(VIDEO_ITEM) as PlaylistItem
-//        }
-//        setData()
-//        initializePlayer()
-//    }
-//
-//    private fun initializePlayer() {
-//        youTubeView = youtube_view as YouTubePlayerView
-//        youTubeView.initialize(YoutubeRepository.YOUTUBE_API_KEY, this)
-//    }
-//
-//    private fun setData() {
-//        video_title.text = video.snippet?.title
-//        video_description.text = video.snippet?.description
-//    }
-//
-//    override fun onInitializationSuccess(p0: YouTubePlayer.Provider?, player: YouTubePlayer?, wasRestored: Boolean) {
-//        if (!wasRestored) {
-//            player?.cueVideo(video.contentDetails?.videoId); // Plays https://www.youtube.com/watch?v=fhWaJi1Hsfo
-//        }
-//    }
-//
-//    override fun onInitializationFailure(p0: YouTubePlayer.Provider?, errorReason: YouTubeInitializationResult?) {
-//        if (errorReason!!.isUserRecoverableError()) {
-//            errorReason.getErrorDialog(this, VideoActivity.RECOVERY_REQUEST).show()
-//        } else {
-//            val error: String = String.format(getString(R.string.player_error), errorReason.toString())
-//            baseContext.showToast(error)
-//        }
-//    }
+    override fun setupViews() {
+        getVideo()
+    }
 
+    private fun getVideo() {
+        initPlayer(item?.snippet?.resourceId?.videoId.toString())
+    }
+
+    private fun initPlayer(id:String) {
+        lifecycle.addObserver(player_view)
+        player_view.addYouTubePlayerListener(object : AbstractYouTubePlayerListener(){
+            override fun onReady(@NonNull youTubePlayer: com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer) {
+                youTubePlayer.loadVideo(id,0F)
+            }
+        })
+        title_video.text= item?.snippet?.title
+        video_description.text= item?.snippet?.description
+    }
+
+    override fun setupFetchRequests() {
+    }
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            supportActionBar?.hide()
+            window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+            player_view?.layoutParams {
+                width = ViewGroup.LayoutParams.MATCH_PARENT
+                height = ViewGroup.LayoutParams.WRAP_CONTENT
+            }
+        }
+
+        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            supportActionBar?.show()
+            player_view?.layoutParams {
+                width = ViewGroup.LayoutParams.MATCH_PARENT
+                height = ViewGroup.LayoutParams.MATCH_PARENT
+            }
+        }
+
+    }
+
+    companion object {
+        var item: DetailVideo? = null
+        const val VIDEO_ITEM = "video_item"
+        fun instanceActivity(activity: Activity?, video: DetailVideo) {
+            val intent = Intent(activity, VideoActivity::class.java)
+            intent.putExtra("video",item)
+            this.item = video
+            activity?.startActivity(intent)
+        }
+    }
 }

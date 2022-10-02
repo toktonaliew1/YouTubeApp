@@ -11,7 +11,6 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.tilek.youtubeparser"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
@@ -41,9 +40,7 @@ android {
     buildFeatures {
         viewBinding true
     }
-
 }
-
 
 dependencies {
 
@@ -53,9 +50,6 @@ dependencies {
 
     // Dependencies for working with Architecture components
     // You'll probably have to update the version numbers in build.gradle (Project)
-
-    //view model
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
     // Room components
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"
@@ -85,12 +79,11 @@ dependencies {
     })
     androidTestImplementation "androidx.test.ext:junit:$rootProject.androidxJunitVersion"
 
-    //koin
-    def koin_version = '2.0.1'
-    implementation "org.koin:koin-android:$koin_version"
+    //coin
+    def koin_version = '2.1.1'
     implementation "org.koin:koin-androidx-scope:$koin_version"
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
-
+    implementation "org.koin:koin-androidx-fragment:$koin_version"
 
     //navigation
     def nav_version = "2.3.2"
@@ -115,9 +108,7 @@ dependencies {
     implementation("androidx.paging:paging-runtime-ktx:$pagingVersion")
 
 
-
-
-    //YoutubePlayer
-    implementation files('libs/YouTubeAndroidPlayerApi.jar')
-    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
+        //YoutubePlayer
+        implementation files('libs/YouTubeAndroidPlayerApi.jar')
+        implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
 }

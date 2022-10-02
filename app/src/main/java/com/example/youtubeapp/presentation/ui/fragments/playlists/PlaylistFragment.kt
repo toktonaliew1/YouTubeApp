@@ -75,12 +75,12 @@ class PlaylistFragment : BaseFragment<PlaylistViewModel>(R.layout.playlist_fragm
     }
 
     private fun fetchNextData(nextPageToken: String) {
-        mViewModule!!.getNextPlaylist(nextPageToken).observe(viewLifecycleOwner) {
+        mViewModule!!.getNextPlaylist(nextPageToken).observe(viewLifecycleOwner, {
             if (it?.data?.nextPageToken == null) {
                 this.nextPageToken = null
             }
             statusCheck(it)
-        }
+        })
     }
 
     private fun statusCheck(resource: Resource<Playlist>) {

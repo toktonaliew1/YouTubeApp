@@ -1,5 +1,6 @@
 package com.example.youtubeapp.data.remote.network.apiservisec
 
+import com.example.youtubeapp.domain.models.DetailPlayList
 import com.example.youtubeapp.domain.models.Playlist
 import com.example.youtubeapp.domain.models.PlaylistInfo
 import com.example.youtubeapp.domain.models.PlaylistItem
@@ -25,6 +26,15 @@ interface YouTubeApi {
         @Query("maxResults") maxResults : Int
     ): PlaylistInfo
 
+
+    @GET("playlistItems")
+    suspend fun fetchDetailPlaylist(
+        @Query("part") part: String,
+        @Query("key") key: String,
+        @Query("playlistId") playlistId: String?,
+        @Query("pageToken") pageToken: String?
+    ): DetailPlayList
+
     @GET("playlists")
     suspend fun getNextPlaylists(
         @Query("part")part : String,
@@ -41,6 +51,8 @@ interface YouTubeApi {
         @Query("key") key : String,
         @Query("maxResults") maxResults : Int
     ) : Playlist
+
+
 
     @GET("playlistItems")
     suspend fun getNextVideoListFromPlaylist(

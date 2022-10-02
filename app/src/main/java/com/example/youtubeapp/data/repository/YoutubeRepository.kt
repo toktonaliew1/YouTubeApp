@@ -4,7 +4,6 @@ import androidx.lifecycle.liveData
 import com.example.youtubeapp.data.dao.YoutubeDao
 import com.example.youtubeapp.data.dao.YoutubeDataBase
 import com.example.youtubeapp.domain.models.PlaylistItem
-import com.example.youtubeapp.domain.models.VideoListItem
 import com.example.youtubeapp.data.remote.network.Resource
 import com.example.youtubeapp.data.remote.network.apiservisec.YouTubeApi
 import kotlinx.coroutines.Dispatchers
@@ -18,26 +17,16 @@ class YoutubeRepository(private var api: YouTubeApi, private var database: Youtu
 
     val channelId = "UCKsqMPIIhev3qbMxCL8Emvw"
     val part = "snippet,contentDetails"
-    val maxResults = 30
+    val maxResults = 8
 
 
     fun getPlaylist() : MutableList<PlaylistItem>{
         return database.wordDao().getPlaylist()
     }
 
-    fun getAllVideos(id : String) : VideoListItem?{
-        return database.wordDao().getAllVideos(id)
-    }
-
     fun addPlaylists(list : MutableList<PlaylistItem>) {
         database.wordDao().addPlaylist(list)
     }
-
-    fun addVideos(list : MutableList<PlaylistItem>){
-        database.wordDao().addVideos(list)
-    }
-
-
 
     fun getPlaylists() = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
@@ -58,6 +47,22 @@ class YoutubeRepository(private var api: YouTubeApi, private var database: Youtu
             emit(Resource.success(data = request))
         } catch (e: java.lang.Exception) {
             e.printStackTrace()
+            emit(Resource.error(data = null, message = e.message ?: "Error"))
+        }
+    }
+
+
+
+    fun fetchDetailPlaylists(playlistId: String?, pageToken: String?) = liveData(Dispatchers.IO) {
+        emit(Resource.loading(data = null))
+        //TODO("add emit to getDetailPlaylist" )
+        //emit(Resource.fetchFromDB(playlistDao.getDetailPlaylist()))
+
+        try {
+            val detailRequest = api.fetchDetailPlaylist(part, YOUTUBE_API_KEY, playlistId, pageToken)
+            youtubeDao.insertDetailPlaylist(detailRequest)
+            emit(Resource.success(data = detailRequest))
+        } catch (e: java.lang.Exception) {
             emit(Resource.error(data = null, message = e.message ?: "Error"))
         }
     }

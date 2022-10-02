@@ -14,9 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YouTubeApp">
 
-        <activity android:name="com.example.youtubeapp.presentation.ui.fragments.video.VideoActivity">
+        <activity android:name="com.example.youtubeapp.presentation.ui.fragments.video.DetailVideoActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"/>
 
-        </activity>
+
+
         <activity
             android:name="com.example.youtubeapp.presentation.ui.activity.MainActivity"
             android:screenOrientation="portrait">

@@ -9,7 +9,7 @@ import com.example.youtubeapp.domain.models.PlaylistInfo
 import com.example.youtubeapp.domain.models.PlaylistItem
 import com.example.youtubeapp.domain.models.PlaylistItems
 
-class VideoDetailViewModel(private val repository: YoutubeRepository) : BaseViewModel() {
+class VideoDetailViewModel(private val repository: YoutubeRepository) : BaseViewModel(){
     var playlists = MutableLiveData<MutableList<PlaylistItems>>()
 
     init {
