@@ -19,15 +19,12 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-
-
 val vmModule = module {
     viewModel { PlaylistViewModel(get()) }
     viewModel { MainViewModel() }
     viewModel { DetailsViewModel(get()) }
     viewModel { NoInternetViewModel() }
     viewModel { VideoDetailViewModel(get()) }
-
 }
 
 val appModule = module {
@@ -37,7 +34,7 @@ val appModule = module {
 val networkModule = module {
     single { provideRetrofit(get()) }
     single { provideOkhttpClient() }
-    factory { YouTubeApi.provideYoutubeApi(get()) }
+    single { YouTubeApi.provideYoutubeApi(get()) }
 }
 
 val repositoryModule = module {

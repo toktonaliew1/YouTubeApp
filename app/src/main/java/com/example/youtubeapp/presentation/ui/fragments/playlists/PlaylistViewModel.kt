@@ -30,5 +30,4 @@ class PlaylistViewModel (private var repository : YoutubeRepository) : ViewModel
     fun addPlaylistsToLD(list : MutableList<PlaylistItem>){
         repository.addPlaylists(list)
     }
-
 }

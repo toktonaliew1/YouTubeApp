@@ -29,7 +29,9 @@ abstract class BaseActivity<out ViewModel : BaseViewModel>(private var layoutId:
     private fun initLanguage() {}
 
     abstract fun setupLiveData()
+
     abstract fun setupViews()
+
     abstract fun setupFetchRequests()
 
     private fun showError() {

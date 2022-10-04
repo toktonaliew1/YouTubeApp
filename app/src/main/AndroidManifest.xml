@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YouTubeApp">
 
-        <activity android:name="com.example.youtubeapp.presentation.ui.fragments.video.DetailVideoActivity"
+        <activity android:name="com.example.youtubeapp.presentation.ui.fragments.video.VideoActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"/>
 
 
