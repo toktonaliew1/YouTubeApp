@@ -24,21 +24,22 @@ val vmModule = module {
     viewModel { MainViewModel() }
     viewModel { DetailsViewModel(get()) }
     viewModel { NoInternetViewModel() }
-    viewModel { VideoDetailViewModel(get()) }
+
 }
 
 val appModule = module {
     single { androidContext().resources }
+
 }
 
 val networkModule = module {
     single { provideRetrofit(get()) }
     single { provideOkhttpClient() }
-    single { YouTubeApi.provideYoutubeApi(get()) }
+    factory { YouTubeApi.provideYoutubeApi(get()) }
 }
 
 val repositoryModule = module {
-    factory { YoutubeRepository(get(), get(), get()) }
+    factory { YoutubeRepository(get(), get())}
 }
 
 val localModule = module {

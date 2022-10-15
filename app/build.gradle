@@ -107,7 +107,7 @@ dependencies {
     implementation("androidx.paging:paging-runtime-ktx:$pagingVersion")
 
 
-        //YoutubePlayer
-        implementation files('libs/YouTubeAndroidPlayerApi.jar')
-        implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
+    //YoutubePlayer
+    implementation files('libs/YouTubeAndroidPlayerApi.jar')
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
 }

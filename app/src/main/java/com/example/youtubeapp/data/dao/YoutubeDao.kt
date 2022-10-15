@@ -21,7 +21,6 @@ interface YoutubeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend  fun insertDetailPlaylist(items: DetailPlayList)
 
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addPlaylist(list: MutableList<PlaylistItem>)
 
