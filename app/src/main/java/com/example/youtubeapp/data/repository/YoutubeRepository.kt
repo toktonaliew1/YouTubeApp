@@ -9,7 +9,6 @@ import com.example.youtubeapp.data.remote.network.apiservisec.YouTubeApi
 import kotlinx.coroutines.Dispatchers
 
 class YoutubeRepository(private var api: YouTubeApi, private var database: YoutubeDataBase)
-//, private var youtubeDao: YoutubeDao)
 {
 
     companion object {
@@ -38,21 +37,16 @@ class YoutubeRepository(private var api: YouTubeApi, private var database: Youtu
         }
     }
 
-
-//    fun fetchPlaylists() = liveData(Dispatchers.IO) {
-//        emit(Resource.loading(data = null))
-//        emit(Resource.fetchFromDB(youtubeDao.getPlaylists()))
-//        try {
-//            val request = api.getPlayList(part, channelId, YOUTUBE_API_KEY, maxResults)
-//            youtubeDao.insertPlaylist(request)
-//            emit(Resource.success(data = request))
-//        } catch (e: java.lang.Exception) {
-//            e.printStackTrace()
-//            emit(Resource.error(data = null, message = e.message ?: "Error"))
-//        }
-//    }
-
-
+    fun fetchPlaylists() = liveData(Dispatchers.IO) {
+        emit(Resource.loading(data = null))
+        try {
+            val request = api.getPlayList(part, channelId, YOUTUBE_API_KEY, maxResults)
+            emit(Resource.success(data = request))
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+            emit(Resource.error(data = null, message = e.message ?: "Error"))
+        }
+    }
 
 //    fun fetchDetailPlaylists(playlistId: String?, pageToken: String?) = liveData(Dispatchers.IO) {
 //        emit(Resource.loading(data = null))

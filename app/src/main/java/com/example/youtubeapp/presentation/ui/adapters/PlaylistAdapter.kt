@@ -22,7 +22,7 @@ class PlaylistAdapter(var listener : OnPlaylistClickListener) : RecyclerView.Ada
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaylistViewHolder
             = PlaylistViewHolder(LayoutInflater.from(parent.context)
-            .inflate(R.layout.playlist_item,parent,false))
+        .inflate(R.layout.playlist_item,parent,false))
 
     override fun onBindViewHolder(holder: PlaylistViewHolder, position: Int) {
         holder.onBind(list[position])

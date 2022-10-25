@@ -55,6 +55,16 @@ data class PlaylistItems(
         var nextPageToken: String? = null
 ):Serializable
 
+data class PlaylistItemss(
+        @SerializedName("id")
+        var apiId: String? = null,
+        var kind: String? = null,
+        var etag: String? = null,
+        var snippet: Snippet? = null,
+        var contentDetails: ContentDetails? = null,
+        var nextPageToken: String? = null
+):Serializable
+
 
 
 data class ContentDetails(

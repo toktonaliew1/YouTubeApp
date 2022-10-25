@@ -24,7 +24,7 @@ val vmModule = module {
     viewModel { MainViewModel() }
     viewModel { DetailsViewModel(get()) }
     viewModel { NoInternetViewModel() }
-
+    viewModel { VideoDetailViewModel(get()) }
 }
 
 val appModule = module {

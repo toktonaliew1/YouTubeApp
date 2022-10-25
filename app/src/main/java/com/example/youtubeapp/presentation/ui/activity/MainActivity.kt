@@ -14,12 +14,15 @@ import com.example.youtubeapp.presentation.ui.fragments.playlists.PlaylistViewMo
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class MainActivity : BaseActivityMain(R.layout.activity_main){
+class MainActivity : AppCompatActivity(){
 
     lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Thread.sleep(2000)
+        setTheme(R.style.Theme_YouTubeApp)
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         checkForInternet()
     }

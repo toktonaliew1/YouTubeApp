@@ -12,16 +12,16 @@ import com.example.youtubeapp.domain.models.PlaylistItems
 class VideoDetailViewModel(private val repository: YoutubeRepository) : BaseViewModel(){
     var playlists = MutableLiveData<MutableList<PlaylistItems>>()
 
-//    init {
-//        fetchPlaylists()
-//    }
+    init {
+        fetchPlaylists()
+    }
 
-//    private fun fetchPlaylists() {
-//        repository.fetchPlaylists().observeForever {
-//            when (it.status) {
-//                Status.SUCCESS -> playlists.postValue(it.data?.items!!)
-//                Status.ERROR -> errorMessage.postValue(it.message.toString())
-//            }
-//        }
-//    }
+    private fun fetchPlaylists() {
+        repository.fetchPlaylists().observeForever {
+            when (it.status) {
+                Status.SUCCESS -> playlists.postValue(it.data?.items!!)
+                Status.ERROR -> errorMessage.postValue(it.message.toString())
+            }
+        }
+    }
 }

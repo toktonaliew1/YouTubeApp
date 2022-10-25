@@ -12,17 +12,21 @@ import com.example.youtubeapp.domain.models.PlaylistItem
 import com.example.youtubeapp.data.remote.network.Resource
 import com.example.youtubeapp.data.remote.network.Status
 import com.example.youtubeapp.domain.models.Playlist
+import com.example.youtubeapp.domain.models.PlaylistItems
 import com.example.youtubeapp.extensions.*
 import com.example.youtubeapp.presentation.ui.fragments.noInternet.NoInternetFragment
 import com.example.youtubeapp.presentation.playlistClick.OnPlaylistClickListener
 import com.example.youtubeapp.presentation.ui.adapters.PlaylistAdapter
+import com.example.youtubeapp.presentation.ui.fragments.details.DetailsFragment
+import com.example.youtubeapp.presentation.ui.fragments.video.VideoActivity
+
 import kotlinx.android.synthetic.main.playlist_fragment.*
 import org.koin.android.ext.android.inject
 
-class PlaylistFragment : BaseFragment<PlaylistViewModel>(R.layout.playlist_fragment),
-    OnPlaylistClickListener {
+class PlaylistFragment : BaseFragment<PlaylistViewModel>(R.layout.playlist_fragment), OnPlaylistClickListener {
 
     private lateinit var adapter: PlaylistAdapter
+
     private var nextPageToken: String? = null
 
     companion object {
@@ -33,7 +37,7 @@ class PlaylistFragment : BaseFragment<PlaylistViewModel>(R.layout.playlist_fragm
     override fun setUpView() {
         initRecycler()
         logger("data", "start")
-        if (isOffline) {
+        if (PlaylistFragment.isOffline) {
             fetchDataFromLD()
         } else {
             fetchData()
@@ -92,9 +96,9 @@ class PlaylistFragment : BaseFragment<PlaylistViewModel>(R.layout.playlist_fragm
     }
 
     private fun fetchData() {
-        mViewModule!!.getPlaylists().observe(viewLifecycleOwner) {
+        mViewModule!!.getPlaylists().observe(viewLifecycleOwner, {
             statusCheck(it)
-        }
+        })
     }
 
     private fun setData(resource: Resource<Playlist>) {
@@ -121,7 +125,6 @@ class PlaylistFragment : BaseFragment<PlaylistViewModel>(R.layout.playlist_fragm
         player: YouTubePlayer?,
         wasRestored: Boolean
     ) {
-
     }
 
     override fun onInitializationFailure(

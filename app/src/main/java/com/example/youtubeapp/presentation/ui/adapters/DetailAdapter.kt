@@ -5,10 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.youtubeapp.R
+import com.example.youtubeapp.domain.models.DetailVideo
 import com.example.youtubeapp.domain.models.PlaylistItem
+import com.example.youtubeapp.extensions.LoadImage
 import com.example.youtubeapp.extensions.loadImage
 import com.example.youtubeapp.presentation.playlistClick.OnPlaylistClickListener
+import com.example.youtubeapp.presentation.ui.fragments.video.VideoActivity.Companion.item
+import kotlinx.android.synthetic.main.activity_video.view.*
 import kotlinx.android.synthetic.main.playlist_item.view.*
+import kotlin.reflect.KFunction1
 
 class DetailAdapter (var listener : OnPlaylistClickListener) : RecyclerView.Adapter<DetailAdapter.VideoListViewHolder>() {
 
@@ -21,7 +26,7 @@ class DetailAdapter (var listener : OnPlaylistClickListener) : RecyclerView.Adap
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoListViewHolder
             = VideoListViewHolder(LayoutInflater.from(parent.context)
-            .inflate(R.layout.playlist_item,parent,false))
+        .inflate(R.layout.playlist_item,parent,false))
 
     override fun onBindViewHolder(holder: VideoListViewHolder, position: Int) {
         holder.onBind(list[position])

@@ -10,6 +10,7 @@ import com.example.youtubeapp.domain.models.PlaylistItem
 import com.example.youtubeapp.data.remote.network.Resource
 import com.example.youtubeapp.data.repository.YoutubeRepository
 import com.example.youtubeapp.domain.models.Playlist
+import com.example.youtubeapp.domain.models.PlaylistInfo
 
 class PlaylistViewModel (private var repository : YoutubeRepository) : ViewModel () {
 
@@ -19,15 +20,16 @@ class PlaylistViewModel (private var repository : YoutubeRepository) : ViewModel
         return repository.getPlaylists()
     }
 
-    fun getNextPlaylist(nextPageToken: String): LiveData<Resource<Playlist>> {
+    fun getNextPlaylist(nextPageToken : String): LiveData<Resource<Playlist>> {
         return repository.getNextPlaylists(nextPageToken)
     }
 
-    fun getPlaylistFromLD() {
+    fun getPlaylistFromLD(){
         localData.value = repository.getPlaylist()
     }
 
-    fun addPlaylistsToLD(list: MutableList<PlaylistItem>) {
+    fun addPlaylistsToLD(list : MutableList<PlaylistItem>){
         repository.addPlaylists(list)
     }
+
 }
