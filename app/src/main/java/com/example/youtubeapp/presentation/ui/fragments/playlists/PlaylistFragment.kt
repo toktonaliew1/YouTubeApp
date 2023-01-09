@@ -7,12 +7,9 @@ import com.example.youtubeapp.R
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import com.example.youtubeapp.base.BaseFragment
-import com.example.youtubeapp.domain.models.PlaylistInfo
-import com.example.youtubeapp.domain.models.PlaylistItem
 import com.example.youtubeapp.data.remote.network.Resource
 import com.example.youtubeapp.data.remote.network.Status
-import com.example.youtubeapp.domain.models.Playlist
-import com.example.youtubeapp.domain.models.PlaylistItems
+import com.example.youtubeapp.domain.models.*
 import com.example.youtubeapp.extensions.*
 import com.example.youtubeapp.presentation.ui.fragments.noInternet.NoInternetFragment
 import com.example.youtubeapp.presentation.playlistClick.OnPlaylistClickListener
@@ -26,7 +23,6 @@ import org.koin.android.ext.android.inject
 class PlaylistFragment : BaseFragment<PlaylistViewModel>(R.layout.playlist_fragment), OnPlaylistClickListener {
 
     private lateinit var adapter: PlaylistAdapter
-
     private var nextPageToken: String? = null
 
     companion object {
@@ -87,7 +83,7 @@ class PlaylistFragment : BaseFragment<PlaylistViewModel>(R.layout.playlist_fragm
         })
     }
 
-    private fun statusCheck(resource: Resource<Playlist>) {
+    private fun statusCheck(resource: Resource<PlaylistInfo>) {
         when (resource.status) {
             Status.SUCCESS -> setData(resource)
             Status.LOADING -> playlist_progress.visible()
@@ -101,7 +97,7 @@ class PlaylistFragment : BaseFragment<PlaylistViewModel>(R.layout.playlist_fragm
         })
     }
 
-    private fun setData(resource: Resource<Playlist>) {
+    private fun setData(resource: Resource<PlaylistInfo>) {
         resource.data?.items?.let { it1 ->
             adapter.add(it1)
             mViewModule!!.addPlaylistsToLD(it1)
@@ -125,6 +121,7 @@ class PlaylistFragment : BaseFragment<PlaylistViewModel>(R.layout.playlist_fragm
         player: YouTubePlayer?,
         wasRestored: Boolean
     ) {
+
     }
 
     override fun onInitializationFailure(

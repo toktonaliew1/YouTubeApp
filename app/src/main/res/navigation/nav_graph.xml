@@ -46,4 +46,8 @@
         android:name="com.example.youtubeapp.presentation.ui.fragments.video.VideoActivity"
         android:label="video_detail_fragment"
         tools:layout="@layout/activity_video" />
+    <activity
+        android:id="@+id/playlistItemActivity"
+        android:name="com.michaelmagdy.youtubeapi.ui.activities.playlistItem.PlaylistItemActivity"
+        android:label="PlaylistItemActivity" />
 </navigation>

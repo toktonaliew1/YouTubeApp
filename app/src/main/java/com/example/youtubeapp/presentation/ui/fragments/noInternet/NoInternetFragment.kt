@@ -30,9 +30,9 @@ class NoInternetFragment : BaseFragment<NoInternetViewModel>(R.layout.fragment_n
     private fun isOnline() {
         btn_try_again.setOnClickListener {
             if (isInternetConnected(getConnectivityManager(requireContext()))){
-                findNavController().navigateUp()
+                findNavController().navigate(R.id.action_noInternetFragment_to_playlistFragment)
             }else{
-                context?.showToast("No internet")
+                context?.showToast("Нет подключения")
             }
         }
     }

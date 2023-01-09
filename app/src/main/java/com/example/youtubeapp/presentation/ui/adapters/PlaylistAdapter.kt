@@ -37,12 +37,10 @@ class PlaylistAdapter(var listener : OnPlaylistClickListener) : RecyclerView.Ada
 
         fun onBind(playlistItem: PlaylistItem){
             itemView.apply {
-                video_name.text = playlistItem.snippet?.title
-                video_amount.text = (playlistItem.contentDetails?.itemCount.toString() + " video series")
+                playlist_name.text = playlistItem.snippet?.title
+                playlist_amount.text = (playlistItem.contentDetails?.itemCount.toString() + " video series")
                 playlist_image.loadImage(playlistItem.snippet?.thumbnails?.medium?.url, 10)
             }
         }
-
     }
-
 }

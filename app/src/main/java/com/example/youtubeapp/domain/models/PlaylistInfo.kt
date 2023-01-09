@@ -11,24 +11,10 @@ import com.example.youtubeapp.converter.SnippetConverter
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-@Entity(tableName = "playlist")
 data class PlaylistInfo(
-        @PrimaryKey(autoGenerate = true)
-        @SerializedName("idRoom")
-        var id: Int? = null,
-        @SerializedName("id")
-        var apiId: String? = null,
-        var kind: String? = null,
-        var etag: String? = null,
-        var nextPageToken: String? = null,
-        var items: MutableList<PlaylistItems>? = null
-)
-
-data class Playlist(
         var nextPageToken: String? = null,
         var items: MutableList<PlaylistItem>? = null
 ): Serializable
-
 
 @Entity
 data class PlaylistItem(
@@ -42,31 +28,6 @@ data class PlaylistItem(
         var startTime: Float = 0f
 ) : Serializable
 
-
-
-data class PlaylistItems(
-        @SerializedName("id")
-        var apiId: String? = null,
-        var kind: String? = null,
-        var etag: String? = null,
-        var snippet: Snippet? = null,
-        var contentDetails: ContentDetails? = null,
-        var items: MutableList<PlaylistItems>? = null,
-        var nextPageToken: String? = null
-):Serializable
-
-data class PlaylistItemss(
-        @SerializedName("id")
-        var apiId: String? = null,
-        var kind: String? = null,
-        var etag: String? = null,
-        var snippet: Snippet? = null,
-        var contentDetails: ContentDetails? = null,
-        var nextPageToken: String? = null
-):Serializable
-
-
-
 data class ContentDetails(
         var videoId: String? = null,
         var itemCount: Int? = null
@@ -77,9 +38,18 @@ data class Snippet(
         @TypeConverters(ImageInfoConverter::class)
         var thumbnails: ImageInfo? = null,
         var channelTitle: String? = null,
-        var resourceId: ResourceId?=null,
         var description: String? = null
 ): Serializable
+
+data class Snippett(
+        var publishedAt: String? = null,
+        var channelId: String? = null,
+        var title: String? = null,
+        var description: String? = null,
+        var thumbnails: Thumbnails? = null,
+        var resourceId: ResourceId?=null,
+        var playlistId: String? = null
+):Serializable
 
 data class ImageInfo(
         @TypeConverters(MediumConverter::class)
@@ -90,3 +60,15 @@ data class Medium(
         var url: String? = null
 ): Serializable
 
+data class DetailVideo(
+        var id: String? = null,
+        var snippet: Snippett? = null
+) : Serializable
+
+data class ResourceId(
+        var videoId: String? = null
+) : Serializable
+
+data class Thumbnails(
+        var medium: Medium? = null
+):Serializable

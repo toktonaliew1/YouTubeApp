@@ -18,8 +18,12 @@
 
     <style name="Theme.MyApplication.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="YouTubeApp" parent="Theme.YouTubeApp">
-    <item name="android:windowBackground">@drawable/splash_screen</item>
+    <style name="SplashTheme" parent="Theme.YouTubeApp">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+
+<!--        <style name="Theme.MyApplication.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark" />-->
+
+<!--        <style name="Theme.MyApplication.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />-->
 
     </style>
 </resources>

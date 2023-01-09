@@ -6,11 +6,9 @@ import com.example.youtubeapp.data.dao.YoutubeDataBase
 import com.example.youtubeapp.data.remote.network.apiservisec.YouTubeApi
 import com.example.youtubeapp.data.repository.YoutubeRepository
 import com.example.youtubeapp.presentation.ui.fragments.details.DetailsViewModel
-import com.example.youtubeapp.presentation.ui.activity.MainViewModel
 
 import com.example.youtubeapp.presentation.ui.fragments.noInternet.NoInternetViewModel
 import com.example.youtubeapp.presentation.ui.fragments.playlists.PlaylistViewModel
-import com.example.youtubeapp.presentation.ui.fragments.video.VideoDetailViewModel
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -21,15 +19,12 @@ import java.util.concurrent.TimeUnit
 
 val vmModule = module {
     viewModel { PlaylistViewModel(get()) }
-    viewModel { MainViewModel() }
     viewModel { DetailsViewModel(get()) }
     viewModel { NoInternetViewModel() }
-    viewModel { VideoDetailViewModel(get()) }
 }
 
 val appModule = module {
     single { androidContext().resources }
-
 }
 
 val networkModule = module {
@@ -39,7 +34,7 @@ val networkModule = module {
 }
 
 val repositoryModule = module {
-    factory { YoutubeRepository(get(), get())}
+    factory { YoutubeRepository(get(), get()) }
 }
 
 val localModule = module {
@@ -48,26 +43,26 @@ val localModule = module {
 
 fun provideRetrofit(client: OkHttpClient): Retrofit {
     return Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("https://www.googleapis.com/youtube/v3/")
-            .client(client)
-            .build()
+        .addConverterFactory(GsonConverterFactory.create())
+        .baseUrl("https://www.googleapis.com/")
+        .client(client)
+        .build()
 }
 
 fun provideOkhttpClient(): OkHttpClient {
     return OkHttpClient().newBuilder() //для ограничения времени
-            .connectTimeout(60, TimeUnit.SECONDS)
-            .readTimeout(60, TimeUnit.SECONDS)
-            .writeTimeout(60, TimeUnit.SECONDS)
-            .build()
+        .connectTimeout(60, TimeUnit.SECONDS)
+        .readTimeout(60, TimeUnit.SECONDS)
+        .writeTimeout(60, TimeUnit.SECONDS)
+        .build()
 }
 
 fun provideDatabase(context: Context): YoutubeDataBase {
     return Room.databaseBuilder(
-            context.applicationContext,
-            YoutubeDataBase::class.java,
-            "word_database"
+        context.applicationContext,
+        YoutubeDataBase::class.java,
+        "word_database"
     )
-            .allowMainThreadQueries()
-            .build()
+        .allowMainThreadQueries()
+        .build()
 }

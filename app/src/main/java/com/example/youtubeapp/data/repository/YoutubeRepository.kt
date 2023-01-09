@@ -10,7 +10,6 @@ import kotlinx.coroutines.Dispatchers
 
 class YoutubeRepository(private var api: YouTubeApi, private var database: YoutubeDataBase)
 {
-
     companion object {
         const val YOUTUBE_API_KEY = "AIzaSyAcCV7Vqi1KRKr6ZKwms-Hd8Omi6aWCHps"
     }
@@ -18,7 +17,6 @@ class YoutubeRepository(private var api: YouTubeApi, private var database: Youtu
     val channelId = "UCKsqMPIIhev3qbMxCL8Emvw"
     val part = "snippet,contentDetails"
     val maxResults = 8
-
 
     fun getPlaylist() : MutableList<PlaylistItem>{
         return database.wordDao().getPlaylist()
@@ -37,16 +35,7 @@ class YoutubeRepository(private var api: YouTubeApi, private var database: Youtu
         }
     }
 
-    fun fetchPlaylists() = liveData(Dispatchers.IO) {
-        emit(Resource.loading(data = null))
-        try {
-            val request = api.getPlayList(part, channelId, YOUTUBE_API_KEY, maxResults)
-            emit(Resource.success(data = request))
-        } catch (e: java.lang.Exception) {
-            e.printStackTrace()
-            emit(Resource.error(data = null, message = e.message ?: "Error"))
-        }
-    }
+
 
 //    fun fetchDetailPlaylists(playlistId: String?, pageToken: String?) = liveData(Dispatchers.IO) {
 //        emit(Resource.loading(data = null))

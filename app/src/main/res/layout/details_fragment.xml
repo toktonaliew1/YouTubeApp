@@ -48,7 +48,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:layout_editor_absoluteX="-30dp"
                 tools:layout_editor_absoluteY="-18dp"
-                tools:listitem="@layout/playlist_item" />
+                tools:listitem="@layout/video_item" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

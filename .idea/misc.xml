@@ -4,16 +4,33 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.129" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/drawable/btn_try_bg.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/drawable/ic_no_internet_image.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/drawable/ic_right.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/drawable/icon_backround.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/drawable/icon_outher_background.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/drawable/image_bg.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/drawable/indicator_active_background.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/drawable/indicator_inactive_background.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/drawable/playlist_bg.xml" value="0.1" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/drawable/splash_screen.xml" value="0.1205" />
-        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/layout/activity_video.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/drawable/view_pager_background.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/layout/activity_main.xml" value="0.15" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/layout/activity_playlist_item.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/layout/activity_video.xml" value="0.11" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/layout/details_fragment.xml" value="0.1" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/layout/fragment_blank.xml" value="0.14945652173913043" />
-        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/layout/fragment_no_internet.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/layout/fragment_no_internet.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/layout/item_playlist_item.xml" value="0.17798913043478262" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/layout/item_video.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/layout/item_youtube.xml" value="0.14945652173913043" />
-        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/layout/playlist_fragment.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/layout/on_baording.xml" value="0.16" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/layout/onboarding_item_container.xml" value="0.14945652173913043" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/layout/playlist_fragment.xml" value="0.13" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/layout/playlist_item.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/layout/video_detail_fragment.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/YouTubeApp/app/src/main/res/layout/video_item.xml" value="0.22" />
       </map>
     </option>
   </component>

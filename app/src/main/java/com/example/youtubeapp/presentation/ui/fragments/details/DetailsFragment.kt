@@ -6,23 +6,23 @@ import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.youtubeapp.R
-import com.google.android.youtube.player.YouTubeInitializationResult
-import com.google.android.youtube.player.YouTubePlayer
 import com.example.youtubeapp.base.BaseFragment
-import com.example.youtubeapp.domain.models.PlaylistItem
 import com.example.youtubeapp.data.remote.network.Resource
 import com.example.youtubeapp.data.remote.network.Status
-import com.example.youtubeapp.domain.models.DetailVideo
-import com.example.youtubeapp.domain.models.Playlist
+import com.example.youtubeapp.domain.models.PlaylistInfo
+import com.example.youtubeapp.domain.models.PlaylistItem
 import com.example.youtubeapp.extensions.*
+import com.example.youtubeapp.presentation.playlistClick.OnPlaylistClickListener
 import com.example.youtubeapp.presentation.ui.adapters.DetailAdapter
 import com.example.youtubeapp.presentation.ui.fragments.playlists.PlaylistFragment
-import com.example.youtubeapp.presentation.playlistClick.OnPlaylistClickListener
 import com.example.youtubeapp.presentation.ui.fragments.video.VideoActivity
+import com.google.android.youtube.player.YouTubeInitializationResult
+import com.google.android.youtube.player.YouTubePlayer
 import kotlinx.android.synthetic.main.details_fragment.*
 import org.koin.android.ext.android.inject
 
-class DetailsFragment : BaseFragment<DetailsViewModel>(R.layout.details_fragment), OnPlaylistClickListener{
+class DetailsFragment : BaseFragment<DetailsViewModel>(R.layout.details_fragment),
+    OnPlaylistClickListener {
 
     private lateinit var videoList : PlaylistItem
     private lateinit var adapter : DetailAdapter
@@ -82,13 +82,13 @@ class DetailsFragment : BaseFragment<DetailsViewModel>(R.layout.details_fragment
         })
     }
 
-    private fun setData(resource : Resource<Playlist>){
+    private fun setData(resource : Resource<PlaylistInfo>){
         resource.data?.items?.let { it1 -> adapter.add(it1) }
         nextPageToken = resource.data?.nextPageToken
         progress_bar.gone()
     }
 
-    private fun statusCheck(resource : Resource<Playlist>){
+    private fun statusCheck(resource : Resource<PlaylistInfo>){
         when (resource.status) {
             Status.SUCCESS -> setData(resource)
             Status.LOADING -> progress_bar.visible()
@@ -98,9 +98,12 @@ class DetailsFragment : BaseFragment<DetailsViewModel>(R.layout.details_fragment
 
     override fun onClick(item: PlaylistItem) {
         if (isInternetConnected(getConnectivityManager(requireContext()))) {
+
+
             val intent : Intent = Intent(requireContext(),VideoActivity :: class.java)
-            intent.putExtra(VideoActivity.VIDEO_ITEM, item)
+            intent.putExtra("playlist_id", item)
             requireActivity().startActivity(intent)
+
 //            findNavController().navigate(R.id.action_detailsFragment_to_videoDetailFragment, bundle)
         } else {
             findNavController().navigate(R.id.action_playlistFragment_to_noInternetFragment)
@@ -119,5 +122,4 @@ class DetailsFragment : BaseFragment<DetailsViewModel>(R.layout.details_fragment
         errorReason: YouTubeInitializationResult?
     ) {
     }
-
 }

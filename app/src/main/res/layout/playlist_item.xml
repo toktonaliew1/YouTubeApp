@@ -45,7 +45,7 @@
 
 
     <TextView
-        android:id="@+id/video_name"
+        android:id="@+id/playlist_name"
         android:layout_width="@dimen/width190"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
@@ -53,13 +53,13 @@
         android:textColor="@android:color/black"
         android:textSize="@dimen/txSize14"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/video_amount"
+        app:layout_constraintBottom_toTopOf="@id/playlist_amount"
         app:layout_constraintLeft_toRightOf="@id/playlist_image"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/video_amount"
+        android:id="@+id/playlist_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -68,8 +68,8 @@
         android:textColor="@android:color/black"
         android:textSize="@dimen/txSize12"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@id/video_name"
-        app:layout_constraintTop_toBottomOf="@id/video_name" />
+        app:layout_constraintLeft_toLeftOf="@id/playlist_name"
+        app:layout_constraintTop_toBottomOf="@id/playlist_name" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

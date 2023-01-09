@@ -9,18 +9,18 @@ import androidx.lifecycle.ViewModel
 import com.example.youtubeapp.domain.models.PlaylistItem
 import com.example.youtubeapp.data.remote.network.Resource
 import com.example.youtubeapp.data.repository.YoutubeRepository
-import com.example.youtubeapp.domain.models.Playlist
+
 import com.example.youtubeapp.domain.models.PlaylistInfo
 
 class PlaylistViewModel (private var repository : YoutubeRepository) : ViewModel () {
 
     var localData = MutableLiveData<MutableList<PlaylistItem>>()
 
-    fun getPlaylists(): LiveData<Resource<Playlist>> {
+    fun getPlaylists(): LiveData<Resource<PlaylistInfo>> {
         return repository.getPlaylists()
     }
 
-    fun getNextPlaylist(nextPageToken : String): LiveData<Resource<Playlist>> {
+    fun getNextPlaylist(nextPageToken : String): LiveData<Resource<PlaylistInfo>> {
         return repository.getNextPlaylists(nextPageToken)
     }
 

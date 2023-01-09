@@ -7,36 +7,29 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.youtubeapp.converter.*
 import com.example.youtubeapp.domain.models.DetailPlayList
-import com.example.youtubeapp.domain.models.Playlist
 import com.example.youtubeapp.domain.models.PlaylistInfo
 import com.example.youtubeapp.domain.models.PlaylistItem
 
-@Database(
-    entities = [PlaylistInfo::class, DetailPlayList::class,PlaylistItem::class],
-    version = 3,
-    exportSchema = false
-)
-
+@Database(entities = [PlaylistItem::class], version = 1, exportSchema = false)
 @TypeConverters(
     ContentDetailsConverter::class,
     ImageInfoConverter::class,
     MediumConverter::class,
-    SnippetConverter::class,
-    ClassTypeConverter ::class,
-    TypeConverterVideo::class
+    SnippetConverter::class
 )
 abstract class YoutubeDataBase : RoomDatabase() {
 
     abstract fun wordDao(): YoutubeDao
 
     companion object {
-
+        // Singleton prevents multiple instances of database opening at the
+        // same time.
         @Volatile
         private var INSTANCE: YoutubeDataBase? = null
 
         fun getDatabase(context: Context): YoutubeDataBase {
-
-
+            // if the INSTANCE is not null, then return it,
+            // if it is, then create the database
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
@@ -50,6 +43,7 @@ abstract class YoutubeDataBase : RoomDatabase() {
                 instance
             }
         }
+
     }
 
 }
