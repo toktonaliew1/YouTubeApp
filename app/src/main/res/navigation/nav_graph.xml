@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_detailsFragment_to_videoDetailFragment"
             app:destination="@id/videoDetailFragment" />
+        <action
+            android:id="@+id/action_detailsFragment_to_playlistFragment"
+            app:destination="@id/playlistFragment" />
     </fragment>
     <fragment
         android:id="@+id/noInternetFragment"
@@ -45,9 +48,10 @@
         android:id="@+id/videoDetailFragment"
         android:name="com.example.youtubeapp.presentation.ui.fragments.video.VideoActivity"
         android:label="video_detail_fragment"
-        tools:layout="@layout/activity_video" />
-    <activity
-        android:id="@+id/playlistItemActivity"
-        android:name="com.michaelmagdy.youtubeapi.ui.activities.playlistItem.PlaylistItemActivity"
-        android:label="PlaylistItemActivity" />
+        tools:layout="@layout/activity_video_item" >
+        <action
+            android:id="@+id/action_videoDetailFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+
 </navigation>

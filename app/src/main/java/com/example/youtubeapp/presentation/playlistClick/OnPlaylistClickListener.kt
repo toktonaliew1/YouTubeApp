@@ -7,5 +7,4 @@ interface OnPlaylistClickListener {
 
     fun onClick(item : PlaylistItem)
 
-
 }

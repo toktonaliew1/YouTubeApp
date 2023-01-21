@@ -45,12 +45,13 @@ interface YouTubeApi {
     ) : PlaylistInfo
 
 
-    @GET("playlistItems")
-    fun getPlaylistItems(
+    @GET("youtube/v3/playlistItems")
+    suspend fun getPlaylistItems(
         @Query("part") part: String,
         @Query("playlistId") playlist: String,
-        @Query("pageToken") pageToken: String?
-    ) : Call<PlaylistItemsModel>
+        @Query("videoId") videoId: String,
+        @Query("key") key: String
+    ) : PlaylistItemsModel
 
 
     companion object{

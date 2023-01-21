@@ -1,7 +1,6 @@
 package com.example.youtubeapp.data.repository
 
 import androidx.lifecycle.liveData
-import com.example.youtubeapp.data.dao.YoutubeDao
 import com.example.youtubeapp.data.dao.YoutubeDataBase
 import com.example.youtubeapp.domain.models.PlaylistItem
 import com.example.youtubeapp.data.remote.network.Resource
@@ -30,6 +29,15 @@ class YoutubeRepository(private var api: YouTubeApi, private var database: Youtu
         emit(Resource.loading(data = null))
         try {
             emit(Resource.success(data = api.getPlaylists(part, channelId, YOUTUBE_API_KEY,maxResults)))
+        }catch (e : Exception){
+            emit(Resource.error(data = null,message = e.message.toString()))
+        }
+    }
+
+    fun getPlaylistItems(playlistId: String, videoId: String) = liveData(Dispatchers.IO) {
+        emit(Resource.loading(data = null))
+        try {
+            emit(Resource.success(data = api.getPlaylistItems(part, playlistId, videoId, YOUTUBE_API_KEY)))
         }catch (e : Exception){
             emit(Resource.error(data = null,message = e.message.toString()))
         }

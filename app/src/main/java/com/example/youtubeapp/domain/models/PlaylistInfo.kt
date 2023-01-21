@@ -19,11 +19,14 @@ data class PlaylistInfo(
 @Entity
 data class PlaylistItem(
         @PrimaryKey
+        @SerializedName("id")
         var id: String,
         @TypeConverters(SnippetConverter::class)
+        @SerializedName("snippet")
         var snippet: Snippet? = null,
         var playlistId: String? = null,
         @TypeConverters(ContentDetailsConverter::class)
+        @SerializedName("contentDetails")
         var contentDetails: ContentDetails? = null,
         var startTime: Float = 0f
 ) : Serializable
@@ -38,7 +41,8 @@ data class Snippet(
         @TypeConverters(ImageInfoConverter::class)
         var thumbnails: ImageInfo? = null,
         var channelTitle: String? = null,
-        var description: String? = null
+        var description: String? = null,
+        var publishedAt: String? = null,
 ): Serializable
 
 data class Snippett(

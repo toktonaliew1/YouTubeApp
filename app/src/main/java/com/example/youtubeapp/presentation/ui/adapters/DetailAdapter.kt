@@ -18,7 +18,6 @@ import kotlinx.android.synthetic.main.video_item.view.*
 
 class DetailAdapter(var listener: OnPlaylistClickListener) : RecyclerView.Adapter<DetailAdapter.VideoListViewHolder>() {
 
-
     private var list = ArrayList<PlaylistItem>()
 
     fun add(data:MutableList<PlaylistItem>){
@@ -47,6 +46,5 @@ class DetailAdapter(var listener: OnPlaylistClickListener) : RecyclerView.Adapte
                 video_image.loadImage(playlistItem.snippet?.thumbnails?.medium?.url, 10)
             }
         }
-
     }
 }

@@ -1,9 +1,16 @@
 package com.example.youtubeapp.presentation.ui.activity
 
 import android.os.Bundle
+import android.view.MenuItem
+import android.view.Window
+import androidx.navigation.fragment.findNavController
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation.findNavController
+
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.example.youtubeapp.R
 import com.example.youtubeapp.databinding.ActivityMainBinding
 import com.example.youtubeapp.extensions.getConnectivityManager
@@ -18,6 +25,8 @@ class MainActivity : AppCompatActivity(){
         setContentView(R.layout.activity_main)
         checkForInternet()
     }
+
+
 
     private fun checkForInternet() {
         if (!isInternetConnected(getConnectivityManager(baseContext))){
