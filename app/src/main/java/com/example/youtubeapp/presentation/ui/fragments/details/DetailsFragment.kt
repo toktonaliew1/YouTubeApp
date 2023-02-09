@@ -3,8 +3,8 @@ package com.example.youtubeapp.presentation.ui.fragments.details
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.core.widget.NestedScrollView
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.youtubeapp.R
@@ -17,14 +17,17 @@ import com.example.youtubeapp.extensions.*
 import com.example.youtubeapp.presentation.playlistClick.OnPlaylistClickListener
 import com.example.youtubeapp.presentation.ui.adapters.DetailAdapter
 import com.example.youtubeapp.presentation.ui.fragments.playlists.PlaylistFragment
+import com.example.youtubeapp.presentation.ui.fragments.playlists.PlaylistViewModel
 import com.example.youtubeapp.presentation.ui.fragments.video.VideoActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
-import kotlinx.android.synthetic.main.details_fragment.*
+import kotlinx.android.synthetic.main.fragment_detail.*
+import kotlinx.android.synthetic.main.playlist_item.view.*
 import org.koin.android.ext.android.inject
 
-class DetailsFragment : BaseFragment<DetailsViewModel>(R.layout.details_fragment),
+class DetailsFragment : BaseFragment<DetailsViewModel>(R.layout.fragment_detail),
     OnPlaylistClickListener {
+
 
     private lateinit var videoList: PlaylistItem
     private lateinit var adapter: DetailAdapter
@@ -51,7 +54,8 @@ class DetailsFragment : BaseFragment<DetailsViewModel>(R.layout.details_fragment
     }
 
     private fun initView() {
-        image_view.loadImage(videoList.snippet?.thumbnails?.medium?.url, 1)
+        playlist_name.text = videoList.snippet?.title
+        image_view.loadImage(videoList.snippet?.thumbnails?.medium?.url)
     }
 
     private fun initRecycler() {

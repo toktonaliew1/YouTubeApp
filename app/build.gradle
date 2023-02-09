@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 33
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -118,6 +118,7 @@ dependencies {
 
     //YoutubePlayer
     implementation files('libs/YouTubeAndroidPlayerApi.jar')
+
 
 
     implementation 'com.github.bumptech.glide:glide:4.12.0'

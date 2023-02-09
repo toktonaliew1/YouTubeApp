@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.youtubeapp.data.dao.YoutubeDataBase
 import com.example.youtubeapp.data.remote.network.apiservisec.YouTubeApi
-import com.example.youtubeapp.data.repository.YoutubeRepository
+import com.example.youtubeapp.data.repository.YoutubeRepositoryImpl
 import com.example.youtubeapp.presentation.ui.fragments.details.DetailsViewModel
 
 import com.example.youtubeapp.presentation.ui.fragments.noInternet.NoInternetViewModel
@@ -23,7 +23,6 @@ val vmModule = module {
     viewModel { DetailsViewModel(get()) }
     viewModel { NoInternetViewModel() }
     viewModel { VideoDetailViewModel(get()) }
-
 }
 
 val appModule = module {
@@ -37,7 +36,7 @@ val networkModule = module {
 }
 
 val repositoryModule = module {
-    factory { YoutubeRepository(get(), get()) }
+    factory { YoutubeRepositoryImpl(get(), get()) }
 }
 
 val localModule = module {

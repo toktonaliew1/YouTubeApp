@@ -10,8 +10,10 @@ import com.example.youtubeapp.domain.models.PlaylistItem
 import com.example.youtubeapp.extensions.loadImage
 import com.example.youtubeapp.presentation.playlistClick.OnPlaylistClickListener
 import kotlinx.android.synthetic.main.playlist_item.view.*
+import kotlinx.android.synthetic.main.video_item.view.*
 
-class PlaylistAdapter(var listener : OnPlaylistClickListener) : RecyclerView.Adapter<PlaylistAdapter.PlaylistViewHolder>() {
+class PlaylistAdapter(var listener : OnPlaylistClickListener)
+    : RecyclerView.Adapter<PlaylistAdapter.PlaylistViewHolder>() {
 
     private var list = ArrayList<PlaylistItem>()
 
@@ -37,10 +39,13 @@ class PlaylistAdapter(var listener : OnPlaylistClickListener) : RecyclerView.Ada
 
         fun onBind(playlistItem: PlaylistItem){
             itemView.apply {
+
                 playlist_name.text = playlistItem.snippet?.title
                 playlist_amount.text = (playlistItem.contentDetails?.itemCount.toString() + " video series")
                 playlist_image.loadImage(playlistItem.snippet?.thumbnails?.medium?.url, 10)
             }
         }
+
     }
+
 }

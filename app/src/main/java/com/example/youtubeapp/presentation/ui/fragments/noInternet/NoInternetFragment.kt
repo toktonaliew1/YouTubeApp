@@ -1,6 +1,7 @@
 package com.example.youtubeapp.presentation.ui.fragments.noInternet
 
 import android.os.Bundle
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.youtubeapp.R
 import com.google.android.youtube.player.YouTubeInitializationResult
@@ -9,6 +10,7 @@ import com.example.youtubeapp.base.BaseFragment
 import com.example.youtubeapp.extensions.getConnectivityManager
 import com.example.youtubeapp.extensions.isInternetConnected
 import com.example.youtubeapp.extensions.showToast
+import com.example.youtubeapp.presentation.ui.fragments.playlists.PlaylistViewModel
 import kotlinx.android.synthetic.main.fragment_no_internet.*
 import org.koin.android.ext.android.inject
 

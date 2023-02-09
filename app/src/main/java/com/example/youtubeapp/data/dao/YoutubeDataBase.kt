@@ -10,11 +10,9 @@ import com.example.youtubeapp.domain.models.DetailPlayList
 import com.example.youtubeapp.domain.models.PlaylistInfo
 import com.example.youtubeapp.domain.models.PlaylistItem
 
-@Database(entities = [PlaylistItem::class], version = 2, exportSchema = false)
+@Database(entities = [PlaylistItem::class], version = 1, exportSchema = false)
 @TypeConverters(
     ContentDetailsConverter::class,
-    ImageInfoConverter::class,
-    MediumConverter::class,
     SnippetConverter::class
 )
 abstract class YoutubeDataBase : RoomDatabase() {

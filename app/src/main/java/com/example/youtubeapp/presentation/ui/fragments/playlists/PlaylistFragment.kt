@@ -1,9 +1,12 @@
 package com.example.youtubeapp.presentation.ui.fragments.playlists
 
 import android.os.Bundle
-import android.widget.Toast
+import android.util.Log
 import androidx.core.widget.NestedScrollView
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.cleanarchicture.presentation.state.UIState
 import com.example.youtubeapp.R
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
@@ -15,13 +18,14 @@ import com.example.youtubeapp.extensions.*
 import com.example.youtubeapp.presentation.ui.fragments.noInternet.NoInternetFragment
 import com.example.youtubeapp.presentation.playlistClick.OnPlaylistClickListener
 import com.example.youtubeapp.presentation.ui.adapters.PlaylistAdapter
-import com.example.youtubeapp.presentation.ui.fragments.details.DetailsFragment
-import com.example.youtubeapp.presentation.ui.fragments.video.VideoActivity
+import kotlinx.android.synthetic.main.fragment_detail.*
 
-import kotlinx.android.synthetic.main.playlist_fragment.*
+import kotlinx.android.synthetic.main.fragment_playlist.*
+import kotlinx.android.synthetic.main.fragment_playlist.playlist_name
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
-class PlaylistFragment : BaseFragment<PlaylistViewModel>(R.layout.playlist_fragment), OnPlaylistClickListener {
+class PlaylistFragment : BaseFragment<PlaylistViewModel>(R.layout.fragment_playlist), OnPlaylistClickListener {
 
     private lateinit var adapter: PlaylistAdapter
     private var nextPageToken: String? = null
@@ -59,10 +63,10 @@ class PlaylistFragment : BaseFragment<PlaylistViewModel>(R.layout.playlist_fragm
 
     private fun fetchDataFromLD() {
         mViewModule!!.getPlaylistFromLD()
-        mViewModule!!.localData.observe(viewLifecycleOwner, {
+        mViewModule!!.localData.observe(viewLifecycleOwner) {
             logger("data", it[0].id)
             adapter.add(it)
-        })
+        }
     }
 
     private fun pagging() {
@@ -76,12 +80,12 @@ class PlaylistFragment : BaseFragment<PlaylistViewModel>(R.layout.playlist_fragm
     }
 
     private fun fetchNextData(nextPageToken: String) {
-        mViewModule!!.getNextPlaylist(nextPageToken).observe(viewLifecycleOwner, {
+        mViewModule!!.getNextPlaylist(nextPageToken).observe(viewLifecycleOwner) {
             if (it?.data?.nextPageToken == null) {
                 this.nextPageToken = null
             }
             statusCheck(it)
-        })
+        }
     }
 
     private fun statusCheck(resource: Resource<PlaylistInfo>) {
@@ -93,10 +97,12 @@ class PlaylistFragment : BaseFragment<PlaylistViewModel>(R.layout.playlist_fragm
     }
 
     private fun fetchData() {
-        mViewModule!!.getPlaylists().observe(viewLifecycleOwner, {
+        mViewModule!!.getPlaylists().observe(viewLifecycleOwner) {
             statusCheck(it)
-        })
+        }
     }
+
+
 
     private fun setData(resource: Resource<PlaylistInfo>) {
         resource.data?.items?.let { it1 ->
@@ -106,6 +112,7 @@ class PlaylistFragment : BaseFragment<PlaylistViewModel>(R.layout.playlist_fragm
         nextPageToken = resource.data?.nextPageToken
         playlist_progress.gone()
     }
+
 
     override fun onClick(item: PlaylistItem) {
         if (isInternetConnected(getConnectivityManager(requireContext()))) {

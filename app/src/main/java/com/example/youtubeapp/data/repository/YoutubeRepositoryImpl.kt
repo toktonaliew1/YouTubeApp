@@ -7,7 +7,7 @@ import com.example.youtubeapp.data.remote.network.Resource
 import com.example.youtubeapp.data.remote.network.apiservisec.YouTubeApi
 import kotlinx.coroutines.Dispatchers
 
-class YoutubeRepository(private var api: YouTubeApi, private var database: YoutubeDataBase)
+class YoutubeRepositoryImpl(private var api: YouTubeApi, private var database: YoutubeDataBase)
 {
     companion object {
         const val YOUTUBE_API_KEY = "AIzaSyAcCV7Vqi1KRKr6ZKwms-Hd8Omi6aWCHps"
@@ -21,7 +21,7 @@ class YoutubeRepository(private var api: YouTubeApi, private var database: Youtu
         return database.wordDao().getPlaylist()
     }
 
-    fun addPlaylists(list : MutableList<PlaylistItem>) {
+    fun addPlaylists(list : MutableList<PlaylistItem>){
         database.wordDao().addPlaylist(list)
     }
 
@@ -33,31 +33,6 @@ class YoutubeRepository(private var api: YouTubeApi, private var database: Youtu
             emit(Resource.error(data = null,message = e.message.toString()))
         }
     }
-
-    fun getPlaylistItems(playlistId: String, videoId: String) = liveData(Dispatchers.IO) {
-        emit(Resource.loading(data = null))
-        try {
-            emit(Resource.success(data = api.getPlaylistItems(part, playlistId, videoId, YOUTUBE_API_KEY)))
-        }catch (e : Exception){
-            emit(Resource.error(data = null,message = e.message.toString()))
-        }
-    }
-
-
-
-//    fun fetchDetailPlaylists(playlistId: String?, pageToken: String?) = liveData(Dispatchers.IO) {
-//        emit(Resource.loading(data = null))
-//        //TODO("add emit to getDetailPlaylist" )
-//        //emit(Resource.fetchFromDB(playlistDao.getDetailPlaylist()))
-//
-//        try {
-//            val detailRequest = api.fetchDetailPlaylist(part, YOUTUBE_API_KEY, playlistId, pageToken)
-//            youtubeDao.insertDetailPlaylist(detailRequest)
-//            emit(Resource.success(data = detailRequest))
-//        } catch (e: java.lang.Exception) {
-//            emit(Resource.error(data = null, message = e.message ?: "Error"))
-//        }
-//    }
 
     fun getNextPlaylists(nextPageToken : String) = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
@@ -81,6 +56,16 @@ class YoutubeRepository(private var api: YouTubeApi, private var database: Youtu
         emit(Resource.loading(data = null))
         try {
             emit(Resource.success(data = api.getNextVideoListFromPlaylist(part, videoListId, YOUTUBE_API_KEY,maxResults,nextPageToken)))
+        }catch (e : Exception){
+            emit(Resource.error(data = null,message = e.message.toString()))
+        }
+    }
+
+
+    fun getPlaylistItems(playlistId: String, videoId: String) = liveData(Dispatchers.IO) {
+        emit(Resource.loading(data = null))
+        try {
+            emit(Resource.success(data = api.getPlaylistItems(part, playlistId, videoId, YOUTUBE_API_KEY)))
         }catch (e : Exception){
             emit(Resource.error(data = null,message = e.message.toString()))
         }

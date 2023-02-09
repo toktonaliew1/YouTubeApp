@@ -15,7 +15,8 @@
         android:theme="@style/Theme.YouTubeApp">
 
         <activity android:name=".presentation.ui.onBoarding.OnBoarding"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,8 +29,7 @@
 
         <activity
             android:name=".presentation.ui.activity.MainActivity"
-            android:exported="true"
-            android:theme="@style/SplashTheme">
+            android:exported="true">
         </activity>
 
     </application>

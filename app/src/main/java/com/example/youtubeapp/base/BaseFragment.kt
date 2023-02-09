@@ -10,7 +10,7 @@ import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 
 abstract class BaseFragment<V : ViewModel>(private val layoutId: Int) :
-        Fragment() {
+Fragment() {
 
     var mViewModule: V? = null
 
@@ -20,16 +20,16 @@ abstract class BaseFragment<V : ViewModel>(private val layoutId: Int) :
     abstract fun getViewModule(): V
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         return getPersistentView(inflater, container)
     }
 
     private fun getPersistentView(
-            inflater: LayoutInflater,
-            container: ViewGroup?
+        inflater: LayoutInflater,
+        container: ViewGroup?
     ): View? {
         if (rootView == null) {
             rootView = inflater.inflate(layoutId, container, false)

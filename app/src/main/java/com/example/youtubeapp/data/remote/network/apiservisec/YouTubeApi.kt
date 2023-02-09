@@ -2,8 +2,6 @@ package com.example.youtubeapp.data.remote.network.apiservisec
 
 
 import com.example.youtubeapp.domain.models.PlaylistInfo
-import com.example.youtubeapp.domain.models.it.PlaylistItemsModel
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -51,7 +49,7 @@ interface YouTubeApi {
         @Query("playlistId") playlist: String,
         @Query("videoId") videoId: String,
         @Query("key") key: String
-    ) : PlaylistItemsModel
+    ) : PlaylistInfo
 
 
     companion object{

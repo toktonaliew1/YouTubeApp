@@ -3,7 +3,6 @@ package com.example.youtubeapp.presentation.ui.onBoarding
 import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -13,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.splashscreen.domain.models.OnBoardingItem
 import com.example.youtubeapp.R
-import com.example.youtubeapp.databinding.OnBaordingBinding
+import com.example.youtubeapp.databinding.ActivityOnBaordingBinding
 import com.example.youtubeapp.presentation.ui.activity.MainActivity
 import com.example.youtubeapp.presentation.ui.adapters.OnBoardingItemAdapter
 import com.google.android.material.button.MaterialButton
@@ -24,12 +23,14 @@ class OnBoarding : AppCompatActivity() {
     private lateinit var indicatorsContainer: LinearLayout
 
 
-    private lateinit var binding: OnBaordingBinding
+    private lateinit var binding: ActivityOnBaordingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Thread.sleep(2000)
+        setTheme(R.style.Theme_YouTubeApp)
         super.onCreate(savedInstanceState)
-        binding = OnBaordingBinding.inflate(layoutInflater)
-        setContentView(R.layout.on_baording)
+        binding = ActivityOnBaordingBinding.inflate(layoutInflater)
+        setContentView(R.layout.activity_on_baording)
         setOnBoardingItems()
         setupIndicator()
         setCurrentIndicator(0)

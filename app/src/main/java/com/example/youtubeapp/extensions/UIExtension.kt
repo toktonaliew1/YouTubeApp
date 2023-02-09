@@ -22,12 +22,13 @@ fun ImageView.loadImage (imageURL : String?, radius : Int){
         .into(this)
 }
 
-fun ImageView.LoadImage(url: String, placeholder: Int = 0){
+fun ImageView.loadImage (imageURL : String?){
     Glide.with(this.context)
-        .load(url)
-        .placeholder(placeholder)
+        .load(imageURL)
+        .placeholder(R.drawable.video_back)
         .into(this)
 }
+
 fun YouTubePlayerView.layoutParams(run: ViewGroup.LayoutParams.() -> Unit) {
     val params=layoutParams
     run (params)
