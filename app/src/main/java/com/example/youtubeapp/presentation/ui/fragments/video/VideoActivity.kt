@@ -57,6 +57,7 @@ class VideoActivity : AppCompatActivity(), YouTubePlayerListener {
         setData()
         statusBar()
 
+
     }
 
     private fun statusBar(){
@@ -88,7 +89,6 @@ class VideoActivity : AppCompatActivity(), YouTubePlayerListener {
             binding.videoDescription.text = data.snippet?.description
             binding.videoDescription.movementMethod = ScrollingMovementMethod()
         }
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

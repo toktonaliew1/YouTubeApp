@@ -1,10 +1,11 @@
 package com.example.youtubeapp.presentation.ui.fragments.details
 
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toolbar
 import androidx.core.widget.NestedScrollView
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.youtubeapp.R
@@ -17,13 +18,13 @@ import com.example.youtubeapp.extensions.*
 import com.example.youtubeapp.presentation.playlistClick.OnPlaylistClickListener
 import com.example.youtubeapp.presentation.ui.adapters.DetailAdapter
 import com.example.youtubeapp.presentation.ui.fragments.playlists.PlaylistFragment
-import com.example.youtubeapp.presentation.ui.fragments.playlists.PlaylistViewModel
 import com.example.youtubeapp.presentation.ui.fragments.video.VideoActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import kotlinx.android.synthetic.main.fragment_detail.*
 import kotlinx.android.synthetic.main.playlist_item.view.*
 import org.koin.android.ext.android.inject
+
 
 class DetailsFragment : BaseFragment<DetailsViewModel>(R.layout.fragment_detail),
     OnPlaylistClickListener {
@@ -50,6 +51,7 @@ class DetailsFragment : BaseFragment<DetailsViewModel>(R.layout.fragment_detail)
         super.onCreate(savedInstanceState)
         arguments?.let {
             videoList = it.getSerializable(PlaylistFragment.PLAYLIST_ITEM) as PlaylistItem
+
         }
     }
 
@@ -111,13 +113,13 @@ class DetailsFragment : BaseFragment<DetailsViewModel>(R.layout.fragment_detail)
             intent.putExtra("video_id", item.contentDetails?.videoId)
             requireActivity().startActivity(intent)
         } else {
-            findNavController().navigate(R.id.action_playlistFragment_to_noInternetFragment)
+            findNavController().navigate(com.example.youtubeapp.R.id.action_playlistFragment_to_noInternetFragment)
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
-            findNavController().navigate(R.id.action_playlistFragment_to_noInternetFragment)
+            findNavController().navigate(com.example.youtubeapp.R.id.action_playlistFragment_to_noInternetFragment)
         }
         return true
     }

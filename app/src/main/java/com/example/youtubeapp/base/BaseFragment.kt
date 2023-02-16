@@ -46,8 +46,8 @@ Fragment() {
             mViewModule = getViewModule()
             setUpViewModelObs()
             setUpView()
-        }
-    }
+}
+}
 
     abstract fun setUpView()
 
