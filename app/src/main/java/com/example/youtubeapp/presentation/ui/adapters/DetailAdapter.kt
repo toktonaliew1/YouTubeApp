@@ -33,7 +33,14 @@ class DetailAdapter(var listener: OnPlaylistClickListener) : RecyclerView.Adapte
         holder.onBind(list[position])
         holder.itemView.setOnClickListener {
             listener.onClick(list[position])
+
+
         }
+        listener.onClickItem(list[0])
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return super.getItemViewType(position)
     }
 
     override fun getItemCount(): Int  = list.size
@@ -41,6 +48,7 @@ class DetailAdapter(var listener: OnPlaylistClickListener) : RecyclerView.Adapte
     class VideoListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun onBind(playlistItem: PlaylistItem){
+
             itemView.apply {
                 video_name.text = playlistItem.snippet?.title
                 video_image.loadImage(playlistItem.snippet?.thumbnails?.medium?.url, 10)

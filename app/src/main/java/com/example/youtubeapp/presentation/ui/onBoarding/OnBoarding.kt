@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.splashscreen.domain.models.OnBoardingItem
@@ -16,19 +17,27 @@ import com.example.youtubeapp.databinding.ActivityOnBaordingBinding
 import com.example.youtubeapp.presentation.ui.activity.MainActivity
 import com.example.youtubeapp.presentation.ui.adapters.OnBoardingItemAdapter
 import com.google.android.material.button.MaterialButton
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
+import kotlinx.android.synthetic.main.activity_on_baording.*
+import javax.inject.Inject
+
+
+
 
 class OnBoarding : AppCompatActivity() {
 
     private lateinit var onBoardingItemsAdapter: OnBoardingItemAdapter
     private lateinit var indicatorsContainer: LinearLayout
-
-
     private lateinit var binding: ActivityOnBaordingBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Thread.sleep(2000)
+
         setTheme(R.style.Theme_YouTubeApp)
         super.onCreate(savedInstanceState)
+
         binding = ActivityOnBaordingBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_on_baording)
         setOnBoardingItems()
@@ -36,6 +45,8 @@ class OnBoarding : AppCompatActivity() {
         setCurrentIndicator(0)
         setupPageChangeCallback(0)
     }
+
+
 
     private fun setOnBoardingItems() {
         onBoardingItemsAdapter = OnBoardingItemAdapter(
@@ -65,6 +76,8 @@ class OnBoarding : AppCompatActivity() {
         val onboardingViewPager = findViewById<ViewPager2>(R.id.onboardingViewPager)
         onboardingViewPager.adapter = onBoardingItemsAdapter
 
+
+
         onboardingViewPager.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -76,15 +89,23 @@ class OnBoarding : AppCompatActivity() {
             RecyclerView.OVER_SCROLL_NEVER
         findViewById<MaterialButton>(R.id.buttonGEtStarted).setOnClickListener {
             if (onboardingViewPager.currentItem + 1 < onBoardingItemsAdapter.itemCount) {
+
                 onboardingViewPager.currentItem += 1
             } else {
+
                 navigateToHomeActivity()
             }
         }
         findViewById<TextView>(R.id.skip).setOnClickListener {
             navigateToHomeActivity()
         }
+        findViewById<MaterialButton>(R.id.buttonGEtStarted).setOnClickListener {
+
+        }
+
+
     }
+
 
     private fun navigateToHomeActivity() {
         startActivity(Intent(applicationContext, MainActivity::class.java))
@@ -116,6 +137,8 @@ class OnBoarding : AppCompatActivity() {
         val childCount = indicatorsContainer.childCount
         for (i in 0 until childCount) {
             val imageView = indicatorsContainer.getChildAt(i) as ImageView
+
+
             if (i == position) {
                 imageView.setImageDrawable(
                     ContextCompat.getDrawable(
@@ -123,6 +146,8 @@ class OnBoarding : AppCompatActivity() {
                         R.drawable.indicator_inactive_background,
                     )
                 )
+
+
             } else
                 imageView.setImageDrawable(
                     ContextCompat.getDrawable(
@@ -130,11 +155,16 @@ class OnBoarding : AppCompatActivity() {
                         R.drawable.indicator_active_background
                     )
                 )
+            buttonGEtStarted.setText(
+                "открыть"
+            )
         }
     }
+
     private fun setupPageChangeCallback(positionn: Int) {
 
-        binding.onboardingViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        binding.onboardingViewPager.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
 
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -145,8 +175,7 @@ class OnBoarding : AppCompatActivity() {
                 position: Int,
                 positionOffset: Float,
                 positionOffsetPixels: Int
-            )
-            {
+            ) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
             }
 
@@ -159,5 +188,5 @@ class OnBoarding : AppCompatActivity() {
     }
 
 
-    }
+}
 

@@ -1,6 +1,7 @@
 package com.example.youtubeapp.presentation.ui.fragments.video
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.provider.VoicemailContract
 import android.text.method.ScrollingMovementMethod
@@ -9,7 +10,11 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.cleanarchicture.domain.repositories.YouTubeRepository
+import com.example.youtubeapp.R
 import com.example.youtubeapp.data.remote.network.Resource
 import com.example.youtubeapp.data.remote.network.Status
 import com.example.youtubeapp.data.repository.YoutubeRepositoryImpl
@@ -19,16 +24,23 @@ import com.example.youtubeapp.databinding.ActivityVideoBinding
 import com.example.youtubeapp.domain.models.PlaylistInfo
 
 import com.example.youtubeapp.domain.models.PlaylistItem
+import com.example.youtubeapp.extensions.getConnectivityManager
 import com.example.youtubeapp.extensions.gone
+import com.example.youtubeapp.extensions.isInternetConnected
 import com.example.youtubeapp.extensions.logger
+import com.example.youtubeapp.presentation.ui.activity.MainActivity
 
 import com.example.youtubeapp.presentation.ui.adapters.PlaylistItemAdapter
+import com.example.youtubeapp.presentation.ui.fragments.details.DetailsFragment
 import com.google.android.youtube.player.YouTubeBaseActivity
 
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerListener
+import kotlinx.android.synthetic.main.activity_video.view.*
+import kotlinx.android.synthetic.main.fragment_detail.*
 import kotlinx.android.synthetic.main.fragment_playlist.*
+import kotlinx.android.synthetic.main.fragment_playlist.toolbar_info
 import org.koin.android.ext.android.inject
 
 
@@ -55,8 +67,8 @@ class VideoActivity : AppCompatActivity(), YouTubePlayerListener {
         setContentView(binding.root)
         fetchData()
         setData()
+        onClickListenerToolbar()
         statusBar()
-
 
     }
 
@@ -76,10 +88,12 @@ class VideoActivity : AppCompatActivity(), YouTubePlayerListener {
             if (it) Toast.makeText(this, "All video has been loaded", Toast.LENGTH_SHORT).show()
         }
 
+
         lifecycle.addObserver(binding.youtubePlayer)
 
         binding.youtubePlayer.addYouTubePlayerListener(this)
     }
+
     private fun setData() {
         adapter.addListener = PlaylistItemAdapter.ItemClickListener { data ->
             data.contentDetails?.videoId?.let { id ->
@@ -91,13 +105,11 @@ class VideoActivity : AppCompatActivity(), YouTubePlayerListener {
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home) {
 
-        }
-        return true
+    private fun onClickListenerToolbar() {
+      
+
     }
-
     override fun onApiChange(youTubePlayer: YouTubePlayer) {
 
     }

@@ -103,7 +103,6 @@ class PlaylistFragment : BaseFragment<PlaylistViewModel>(R.layout.fragment_playl
     }
 
 
-
     private fun setData(resource: Resource<PlaylistInfo>) {
         resource.data?.items?.let { it1 ->
             adapter.add(it1)
@@ -122,6 +121,10 @@ class PlaylistFragment : BaseFragment<PlaylistViewModel>(R.layout.fragment_playl
         } else {
             findNavController().navigate(R.id.action_playlistFragment_to_noInternetFragment)
         }
+    }
+
+    override fun onClickItem(item: PlaylistItem) {
+
     }
 
     override fun onInitializationSuccess(

@@ -4,6 +4,7 @@ package com.example.youtubeapp.presentation.ui.fragments.details
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import android.widget.Toolbar
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
@@ -12,6 +13,8 @@ import com.example.youtubeapp.R
 import com.example.youtubeapp.base.BaseFragment
 import com.example.youtubeapp.data.remote.network.Resource
 import com.example.youtubeapp.data.remote.network.Status
+import com.example.youtubeapp.databinding.FragmentDetailBinding
+import com.example.youtubeapp.domain.models.ContentDetails
 import com.example.youtubeapp.domain.models.PlaylistInfo
 import com.example.youtubeapp.domain.models.PlaylistItem
 import com.example.youtubeapp.extensions.*
@@ -21,8 +24,9 @@ import com.example.youtubeapp.presentation.ui.fragments.playlists.PlaylistFragme
 import com.example.youtubeapp.presentation.ui.fragments.video.VideoActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
+import kotlinx.android.synthetic.main.activity_video.view.*
 import kotlinx.android.synthetic.main.fragment_detail.*
-import kotlinx.android.synthetic.main.playlist_item.view.*
+import kotlinx.android.synthetic.main.fragment_detail.view.*
 import org.koin.android.ext.android.inject
 
 
@@ -30,7 +34,9 @@ class DetailsFragment : BaseFragment<DetailsViewModel>(R.layout.fragment_detail)
     OnPlaylistClickListener {
 
 
+    private lateinit var binding: FragmentDetailBinding
     private lateinit var videoList: PlaylistItem
+    private lateinit var contentDetails: ContentDetails
     private lateinit var adapter: DetailAdapter
     private var nextPageToken: String? = null
 
@@ -42,6 +48,7 @@ class DetailsFragment : BaseFragment<DetailsViewModel>(R.layout.fragment_detail)
         initRecycler()
         fetchData()
         pagging()
+        onClickListenerToolbar()
     }
 
     override fun setUpViewModelObs() {
@@ -54,6 +61,7 @@ class DetailsFragment : BaseFragment<DetailsViewModel>(R.layout.fragment_detail)
 
         }
     }
+
 
     private fun initView() {
         playlist_name.text = videoList.snippet?.title
@@ -106,6 +114,19 @@ class DetailsFragment : BaseFragment<DetailsViewModel>(R.layout.fragment_detail)
         }
     }
 
+
+    override fun onClickItem(item: PlaylistItem) {
+        fab.setOnClickListener {
+            if (isInternetConnected(getConnectivityManager(requireContext()))) {
+                val intent = Intent(requireContext(), VideoActivity::class.java)
+                intent.putExtra("playlist_id", videoList.id)
+                intent.putExtra("video_id", item.contentDetails?.videoId)
+                requireActivity().startActivity(intent)
+            }
+
+        }
+    }
+
     override fun onClick(item: PlaylistItem) {
         if (isInternetConnected(getConnectivityManager(requireContext()))) {
             val intent = Intent(requireContext(), VideoActivity::class.java)
@@ -113,15 +134,15 @@ class DetailsFragment : BaseFragment<DetailsViewModel>(R.layout.fragment_detail)
             intent.putExtra("video_id", item.contentDetails?.videoId)
             requireActivity().startActivity(intent)
         } else {
-            findNavController().navigate(com.example.youtubeapp.R.id.action_playlistFragment_to_noInternetFragment)
+            findNavController().navigate(R.id.action_playlistFragment_to_noInternetFragment)
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home) {
-            findNavController().navigate(com.example.youtubeapp.R.id.action_playlistFragment_to_noInternetFragment)
+
+    private fun onClickListenerToolbar() {
+        toolbar_info.ic_back.setOnClickListener {
+            findNavController().navigate(R.id.action_detailsFragment_to_playlistFragment)
         }
-        return true
     }
 
     override fun onInitializationSuccess(

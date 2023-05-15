@@ -16,6 +16,7 @@
 
         <activity android:name=".presentation.ui.onBoarding.OnBoarding"
             android:exported="true"
+
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

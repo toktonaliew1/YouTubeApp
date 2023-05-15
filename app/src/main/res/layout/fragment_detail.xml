@@ -32,7 +32,9 @@
                 app:layout_collapseMode="parallax"
                 app:popupTheme="@style/Theme.Youtube.PopupOverlay">
 
-                <ImageView
+
+
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ic_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
