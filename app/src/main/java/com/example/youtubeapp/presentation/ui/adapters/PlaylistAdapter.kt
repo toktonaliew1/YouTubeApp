@@ -29,7 +29,7 @@ class PlaylistAdapter(var listener : OnPlaylistClickListener)
     override fun onBindViewHolder(holder: PlaylistViewHolder, position: Int) {
         holder.onBind(list[position])
         holder.itemView.setOnClickListener {
-            listener.onClick(list[position])
+            listener.onClickItem(list[position])
         }
     }
 

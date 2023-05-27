@@ -41,6 +41,23 @@
         android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/textTitle"/>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonGEtStarted"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginBottom="80dp"
+        android:backgroundTint="@color/red"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:text="Get started"
+        android:textAllCaps="true"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

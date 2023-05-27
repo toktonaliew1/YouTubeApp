@@ -52,9 +52,5 @@ interface YouTubeApi {
     ) : PlaylistInfo
 
 
-    companion object{
-        fun provideYoutubeApi(retrofit: Retrofit) : YouTubeApi{
-            return retrofit.create(YouTubeApi::class.java)
-        }
-    }
+
 }

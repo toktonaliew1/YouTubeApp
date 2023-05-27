@@ -6,8 +6,6 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.youtubeapp.converter.*
-import com.example.youtubeapp.domain.models.DetailPlayList
-import com.example.youtubeapp.domain.models.PlaylistInfo
 import com.example.youtubeapp.domain.models.PlaylistItem
 
 @Database(entities = [PlaylistItem::class], version = 1, exportSchema = false)
@@ -24,6 +22,7 @@ abstract class YoutubeDataBase : RoomDatabase() {
         // same time.
         @Volatile
         private var INSTANCE: YoutubeDataBase? = null
+
 
         fun getDatabase(context: Context): YoutubeDataBase {
             // if the INSTANCE is not null, then return it,

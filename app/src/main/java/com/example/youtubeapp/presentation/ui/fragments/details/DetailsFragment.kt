@@ -3,9 +3,6 @@ package com.example.youtubeapp.presentation.ui.fragments.details
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
-import android.widget.Toast
-import android.widget.Toolbar
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -24,7 +21,6 @@ import com.example.youtubeapp.presentation.ui.fragments.playlists.PlaylistFragme
 import com.example.youtubeapp.presentation.ui.fragments.video.VideoActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
-import kotlinx.android.synthetic.main.activity_video.view.*
 import kotlinx.android.synthetic.main.fragment_detail.*
 import kotlinx.android.synthetic.main.fragment_detail.view.*
 import org.koin.android.ext.android.inject
@@ -116,25 +112,25 @@ class DetailsFragment : BaseFragment<DetailsViewModel>(R.layout.fragment_detail)
 
 
     override fun onClickItem(item: PlaylistItem) {
-        fab.setOnClickListener {
-            if (isInternetConnected(getConnectivityManager(requireContext()))) {
-                val intent = Intent(requireContext(), VideoActivity::class.java)
-                intent.putExtra("playlist_id", videoList.id)
-                intent.putExtra("video_id", item.contentDetails?.videoId)
-                requireActivity().startActivity(intent)
-            }
-
-        }
-    }
-
-    override fun onClick(item: PlaylistItem) {
         if (isInternetConnected(getConnectivityManager(requireContext()))) {
             val intent = Intent(requireContext(), VideoActivity::class.java)
             intent.putExtra("playlist_id", videoList.id)
             intent.putExtra("video_id", item.contentDetails?.videoId)
             requireActivity().startActivity(intent)
         } else {
-            findNavController().navigate(R.id.action_playlistFragment_to_noInternetFragment)
+
+            findNavController().navigate(R.id.action_detailsFragment_to_noInternetFragment)
+
+        }
+    }
+
+    override fun onClickVideoIcon(item: PlaylistItem) {
+        fab.setOnClickListener {
+            val intent = Intent(requireContext(), VideoActivity::class.java)
+            intent.putExtra("playlist_id", videoList.id)
+            intent.putExtra("video_id", item.contentDetails?.videoId)
+            requireActivity().startActivity(intent)
+
         }
     }
 

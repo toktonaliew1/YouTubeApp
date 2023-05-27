@@ -113,19 +113,21 @@ class PlaylistFragment : BaseFragment<PlaylistViewModel>(R.layout.fragment_playl
     }
 
 
-    override fun onClick(item: PlaylistItem) {
+    override fun onClickItem(item: PlaylistItem) {
         if (isInternetConnected(getConnectivityManager(requireContext()))) {
             val bundle = Bundle()
             bundle.putSerializable(PLAYLIST_ITEM, item)
             findNavController().navigate(R.id.action_playlistFragment_to_detailsFragment, bundle)
         } else {
-            findNavController().navigate(R.id.action_playlistFragment_to_noInternetFragment)
+          findNavController().navigate(R.id.action_playlistFragment_to_noInternetFragment)
+
         }
     }
 
-    override fun onClickItem(item: PlaylistItem) {
-
+    override fun onClickVideoIcon(item: PlaylistItem) {
+        TODO("Not yet implemented")
     }
+
 
     override fun onInitializationSuccess(
         p0: YouTubePlayer.Provider?,

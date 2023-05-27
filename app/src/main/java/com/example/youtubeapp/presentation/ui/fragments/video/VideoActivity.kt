@@ -42,6 +42,8 @@ import kotlinx.android.synthetic.main.fragment_detail.*
 import kotlinx.android.synthetic.main.fragment_playlist.*
 import kotlinx.android.synthetic.main.fragment_playlist.toolbar_info
 import org.koin.android.ext.android.inject
+import java.sql.Time
+import java.util.concurrent.TimeUnit
 
 
 class VideoActivity : AppCompatActivity(), YouTubePlayerListener {
@@ -137,7 +139,9 @@ class VideoActivity : AppCompatActivity(), YouTubePlayerListener {
 
 
     override fun onReady(youTubePlayer: YouTubePlayer) {
+
         youtubePlayer = youTubePlayer
+
         intent?.let { intent ->
             val playlistId = intent.getStringExtra("playlist_id")!!
             val videoId = intent.getStringExtra("video_id")!!
@@ -148,6 +152,7 @@ class VideoActivity : AppCompatActivity(), YouTubePlayerListener {
                             isPlayingVideo = true
                             it?.data?.items?.get(0)?.contentDetails?.videoId?.let { it1 ->
                                 youtubePlayer!!.loadVideo(it1, 0f)
+
                             }
                             binding.titleVideo.text =
                                 it?.data?.items?.get(0)?.snippet?.title
@@ -170,6 +175,7 @@ class VideoActivity : AppCompatActivity(), YouTubePlayerListener {
     }
 
     override fun onVideoDuration(youTubePlayer: YouTubePlayer, duration: Float) {
+
 
     }
 

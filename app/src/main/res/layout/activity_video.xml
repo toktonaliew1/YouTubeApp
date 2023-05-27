@@ -12,7 +12,6 @@
         app:showFullScreenButton="true"
         android:layout_width="match_parent"
         app:showVideoCurrentTime="true"
-        app:showVideoDuration="true"
         android:layout_height="wrap_content" />
 
     <ScrollView

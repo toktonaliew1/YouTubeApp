@@ -53,5 +53,14 @@
             android:id="@+id/action_videoDetailFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="com.example.youtubeapp.presentation.ui.fragments.onBoarding.OnBoardingFragment"
+        android:label="fragment_on_boarding"
+        tools:layout="@layout/fragment_on_boarding" >
+        <action
+            android:id="@+id/action_onBoardingFragment_to_playlistFragment"
+            app:destination="@id/playlistFragment" />
+    </fragment>
 
 </navigation>

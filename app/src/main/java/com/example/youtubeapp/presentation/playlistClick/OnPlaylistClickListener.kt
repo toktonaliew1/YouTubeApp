@@ -7,8 +7,6 @@ interface OnPlaylistClickListener {
 
 
     fun onClickItem(item : PlaylistItem)
-    fun onClick(item : PlaylistItem)
-
-
+    fun onClickVideoIcon(item : PlaylistItem)
 
 }

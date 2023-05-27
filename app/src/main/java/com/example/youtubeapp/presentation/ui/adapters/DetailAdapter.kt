@@ -32,11 +32,10 @@ class DetailAdapter(var listener: OnPlaylistClickListener) : RecyclerView.Adapte
     override fun onBindViewHolder(holder: VideoListViewHolder, position: Int) {
         holder.onBind(list[position])
         holder.itemView.setOnClickListener {
-            listener.onClick(list[position])
-
+            listener.onClickItem(list[position])
 
         }
-        listener.onClickItem(list[0])
+        listener.onClickVideoIcon(list[0])
     }
 
     override fun getItemViewType(position: Int): Int {

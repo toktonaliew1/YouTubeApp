@@ -20,7 +20,8 @@ import com.example.youtubeapp.extensions.isInternetConnected
 class MainActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
+        Thread.sleep(2000)
+        setTheme(R.style.Theme_YouTubeApp)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         checkForInternet()

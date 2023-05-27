@@ -1,6 +1,6 @@
-package com.example.youtubeapp.domain.models
+package com.example.youtubeapp.domain.models.playlist
 
-import androidx.annotation.Keep
+import com.example.youtubeapp.domain.models.PlaylistInfo
 import com.google.gson.annotations.SerializedName
 
 data class PlaylistItemsModel(

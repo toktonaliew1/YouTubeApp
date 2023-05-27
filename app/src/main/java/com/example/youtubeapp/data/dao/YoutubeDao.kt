@@ -2,6 +2,7 @@ package com.example.youtubeapp.data.dao
 
 import androidx.room.*
 import com.example.youtubeapp.domain.models.*
+import com.example.youtubeapp.domain.models.playlist.DetailPlayList
 
 @Dao
 interface YoutubeDao {

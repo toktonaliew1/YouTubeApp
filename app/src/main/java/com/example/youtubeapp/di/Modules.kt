@@ -3,6 +3,7 @@ package com.example.youtubeapp.di
 import android.content.Context
 import androidx.room.Room
 import com.example.youtubeapp.data.dao.YoutubeDataBase
+import com.example.youtubeapp.data.remote.network.RetrofitClient
 import com.example.youtubeapp.data.remote.network.apiservisec.YouTubeApi
 import com.example.youtubeapp.data.repository.YoutubeRepositoryImpl
 import com.example.youtubeapp.presentation.ui.fragments.details.DetailsViewModel
@@ -30,9 +31,9 @@ val appModule = module {
 }
 
 val networkModule = module {
-    single { provideRetrofit(get()) }
-    single { provideOkhttpClient() }
-    factory { YouTubeApi.provideYoutubeApi(get()) }
+    single { RetrofitClient.provideRetrofit(get()) }
+    single { RetrofitClient.provideOkhttpClient() }
+    factory { RetrofitClient.provideYoutubeApi() }
 }
 
 val repositoryModule = module {
@@ -40,31 +41,10 @@ val repositoryModule = module {
 }
 
 val localModule = module {
-    single { provideDatabase(androidContext()) }
+    single { YoutubeDataBase.getDatabase(androidContext()) }
 }
 
-fun provideRetrofit(client: OkHttpClient): Retrofit {
-    return Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl("https://www.googleapis.com/")
-        .client(client)
-        .build()
-}
 
-fun provideOkhttpClient(): OkHttpClient {
-    return OkHttpClient().newBuilder() //для ограничения времени
-        .connectTimeout(60, TimeUnit.SECONDS)
-        .readTimeout(60, TimeUnit.SECONDS)
-        .writeTimeout(60, TimeUnit.SECONDS)
-        .build()
-}
 
-fun provideDatabase(context: Context): YoutubeDataBase {
-    return Room.databaseBuilder(
-        context.applicationContext,
-        YoutubeDataBase::class.java,
-        "word_database"
-    )
-        .allowMainThreadQueries()
-        .build()
-}
+
+

@@ -2,12 +2,10 @@ package com.example.youtubeapp.presentation.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.youtubeapp.databinding.ItemPlaylistItemBinding
 import com.example.youtubeapp.domain.models.PlaylistItem
-import com.example.youtubeapp.presentation.diffutils.PlaylistItemDiffUtil
 
 
 class PlaylistItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -57,12 +55,7 @@ class PlaylistItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return oldItems.size
     }
 
-    fun setData(newList: List<PlaylistItem>){
-        val videoDiff = PlaylistItemDiffUtil(oldItems, newList)
-        val diff = DiffUtil.calculateDiff(videoDiff)
-        oldItems.addAll(newList)
-        diff.dispatchUpdatesTo(this)
-    }
+
 
     fun interface ItemClickListener {
         fun onClick(data:PlaylistItem)
